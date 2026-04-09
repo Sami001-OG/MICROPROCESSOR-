@@ -80,14 +80,14 @@ export default function LessonView({ lesson, onComplete, onNextLesson }: LessonV
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <p className="text-lg mb-6">{lesson.quiz[quizState.currentQuestion].question}</p>
-              <div className="space-y-3">
+              <p className="text-2xl font-medium mb-8 leading-relaxed">{lesson.quiz[quizState.currentQuestion].question}</p>
+              <div className="space-y-4">
                 {lesson.quiz[quizState.currentQuestion].options.map((option, i) => (
                   <button
                     key={i}
                     onClick={() => handleOptionClick(i)}
                     className={cn(
-                      "w-full p-4 rounded-xl text-left transition-all border-2",
+                      "w-full p-5 rounded-xl text-left transition-all border-2 text-lg",
                       quizState.selectedOption === i
                         ? quizState.isCorrect
                           ? "bg-green-500/20 border-green-500 text-green-100"

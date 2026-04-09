@@ -15,7 +15,7 @@ export async function askTutor(question: string, context: string) {
     const data = await response.json();
     return data.text;
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    console.error("Tutor API Error:", error);
     return "I'm sorry, I'm having trouble connecting to my knowledge base right now. Please try again later.";
   }
 }

@@ -128,7 +128,7 @@ export default function Emulator() {
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="flex-1 p-4 font-mono text-sm bg-slate-900 text-slate-100 outline-none resize-none"
+            className="flex-1 p-4 font-mono text-base md:text-lg bg-slate-900 text-slate-100 outline-none resize-none"
             spellCheck={false}
           />
         </div>
@@ -138,7 +138,7 @@ export default function Emulator() {
             <Cpu size={18} className="text-slate-600 dark:text-slate-400" />
             <span className="font-bold text-sm uppercase tracking-wider text-slate-700 dark:text-slate-300">Output Console</span>
           </div>
-          <div className="flex-1 p-3 font-mono text-xs bg-black text-green-400 overflow-y-auto">
+          <div className="flex-1 p-4 font-mono text-sm md:text-base bg-black text-green-400 overflow-y-auto">
             {output.map((line, i) => (
               <div key={i} className="mb-1">{`> ${line}`}</div>
             ))}
@@ -168,9 +168,9 @@ export default function Emulator() {
           ))}
         </div>
         
-        <div className="mt-6 md:mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800/50 rounded-lg transition-colors duration-300">
-          <h4 className="text-sm font-bold text-blue-900 dark:text-blue-300 mb-2">Pro Tip:</h4>
-          <p className="text-xs text-blue-800 dark:text-blue-200/80 leading-relaxed">
+        <div className="mt-6 md:mt-8 p-5 bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800/50 rounded-lg transition-colors duration-300">
+          <h4 className="text-base font-bold text-blue-900 dark:text-blue-300 mb-2">Pro Tip:</h4>
+          <p className="text-sm md:text-base text-blue-800 dark:text-blue-200/80 leading-relaxed">
             In {emuType === '8085' ? '8085' : '8086'}, the {emuType === '8085' ? 'Accumulator (A)' : 'AX register'} is the primary register for arithmetic operations. 
             Notice how the result of the addition is stored there.
           </p>

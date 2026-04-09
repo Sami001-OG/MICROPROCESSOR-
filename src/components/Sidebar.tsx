@@ -43,18 +43,18 @@ export default function Sidebar({
         <button
           onClick={() => { onSelectDashboard(); onClose?.(); }}
           className={cn(
-            "w-full flex items-center gap-3 px-6 py-3 text-sm font-semibold transition-colors",
+            "w-full flex items-center gap-3 px-6 py-4 text-base font-semibold transition-colors",
             !activeLesson ? "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50"
           )}
         >
-          <LayoutDashboard size={18} />
+          <LayoutDashboard size={20} />
           Dashboard
         </button>
 
         {curriculum.map((module) => (
-          <div key={module.id} className="mt-6">
-            <div className="px-6 mb-2">
-              <h2 className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">{module.title}</h2>
+          <div key={module.id} className="mt-8">
+            <div className="px-6 mb-3">
+              <h2 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">{module.title}</h2>
             </div>
             <div className="space-y-1">
               {module.lessons.map((lesson) => (
@@ -62,21 +62,21 @@ export default function Sidebar({
                   key={lesson.id}
                   onClick={() => { onSelectLesson(module, lesson); onClose?.(); }}
                   className={cn(
-                    "w-full flex items-center justify-between px-6 py-2.5 text-sm transition-all group",
+                    "w-full flex items-center justify-between px-6 py-3 text-base font-medium transition-all group",
                     activeLesson?.id === lesson.id 
                       ? "bg-slate-900 dark:bg-blue-600 text-white" 
                       : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50"
                   )}
                 >
                   <div className="flex items-center gap-3 overflow-hidden">
-                    <BookOpen size={16} className={cn(
+                    <BookOpen size={18} className={cn(
                       "shrink-0",
                       activeLesson?.id === lesson.id ? "text-blue-400 dark:text-blue-200" : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"
                     )} />
                     <span className="truncate text-left">{lesson.title}</span>
                   </div>
                   {completedLessons.includes(lesson.id) && (
-                    <CheckCircle2 size={14} className="text-green-500 shrink-0 ml-2" />
+                    <CheckCircle2 size={16} className="text-green-500 shrink-0 ml-2" />
                   )}
                 </button>
               ))}

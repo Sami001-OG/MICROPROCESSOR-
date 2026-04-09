@@ -72,7 +72,7 @@ export default function Tutor({ context, onClose }: TutorProps) {
                 {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
               </div>
               <div className={cn(
-                "p-3 rounded-2xl text-sm leading-relaxed",
+                "p-4 rounded-2xl text-base leading-relaxed",
                 msg.role === 'user' 
                   ? "bg-slate-900 dark:bg-blue-600 text-white rounded-tr-none" 
                   : "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-200 dark:border-slate-700"
@@ -106,7 +106,7 @@ export default function Tutor({ context, onClose }: TutorProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Ask a question..."
-            className="flex-1 bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-900 dark:focus:ring-blue-500 outline-none transition-colors"
+            className="flex-1 bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-base text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-900 dark:focus:ring-blue-500 outline-none transition-colors"
           />
           <button
             onClick={handleSend}
