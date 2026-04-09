@@ -47,6 +47,24 @@ export default function App() {
     }
   };
 
+  const handleNextLesson = () => {
+    if (!activeLesson || !activeModule) return;
+    
+    const currentLessonIndex = activeModule.lessons.findIndex(l => l.id === activeLesson.id);
+    if (currentLessonIndex < activeModule.lessons.length - 1) {
+      setActiveLesson(activeModule.lessons[currentLessonIndex + 1]);
+    } else {
+      const currentModuleIndex = curriculum.findIndex(m => m.id === activeModule.id);
+      if (currentModuleIndex < curriculum.length - 1) {
+        const nextModule = curriculum[currentModuleIndex + 1];
+        setActiveModule(nextModule);
+        setActiveLesson(nextModule.lessons[0]);
+      } else {
+        setView('dashboard');
+      }
+    }
+  };
+
   const selectLesson = (module: Module, lesson: Lesson) => {
     setActiveModule(module);
     setActiveLesson(lesson);
@@ -273,6 +291,7 @@ export default function App() {
                   <LessonView 
                     lesson={activeLesson} 
                     onComplete={handleLessonComplete} 
+                    onNextLesson={handleNextLesson}
                   />
                 )}
               </motion.div>

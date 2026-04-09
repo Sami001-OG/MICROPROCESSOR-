@@ -8,9 +8,10 @@ import { cn } from '../lib/utils';
 interface LessonViewProps {
   lesson: Lesson;
   onComplete: () => void;
+  onNextLesson: () => void;
 }
 
-export default function LessonView({ lesson, onComplete }: LessonViewProps) {
+export default function LessonView({ lesson, onComplete, onNextLesson }: LessonViewProps) {
   const [quizState, setQuizState] = useState<{
     currentQuestion: number;
     selectedOption: number | null;
@@ -130,7 +131,14 @@ export default function LessonView({ lesson, onComplete }: LessonViewProps) {
                 <CheckCircle2 size={40} className="text-white" />
               </div>
               <h4 className="text-2xl font-bold mb-2">Lesson Mastered!</h4>
-              <p className="text-slate-400">You've successfully completed this module. Keep going to achieve full mastery.</p>
+              <p className="text-slate-400 mb-6">You've successfully completed this module. Keep going to achieve full mastery.</p>
+              <button
+                onClick={onNextLesson}
+                className="tech-button tech-button-primary bg-blue-600 hover:bg-blue-500 mx-auto"
+              >
+                Next Lesson
+                <ChevronRight size={18} />
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
