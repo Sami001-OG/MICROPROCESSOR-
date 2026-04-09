@@ -1,0 +1,330 @@
+export interface Lesson {
+  id: string;
+  title: string;
+  content: string;
+  quiz: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+  }[];
+}
+
+export interface Module {
+  id: string;
+  title: string;
+  description: string;
+  lessons: Lesson[];
+}
+
+export const curriculum: Module[] = [
+  {
+    id: 'microprocessors',
+    title: 'Microprocessors',
+    description: 'Evolution, memory design, architecture of 8085/8086, and interfacing.',
+    lessons: [
+      {
+        id: 'evolution-plds',
+        title: 'Evolution & Logic Devices',
+        content: `
+# Evolution of Microprocessors
+
+The microprocessor has evolved through several generations, starting from 4-bit processors (like Intel 4004) to 8-bit (8085), 16-bit (8086), 32-bit (80386), and modern 64-bit multi-core processors.
+
+## Register-Based vs Accumulator-Based
+- **Accumulator-Based**: Early processors (like 8085) relied heavily on a single accumulator register for ALU operations. One operand is always in the accumulator, and the result is stored there.
+- **Register-Based**: Modern processors (and to an extent, 8086) use multiple general-purpose registers, allowing operations between various registers without routing everything through a single accumulator, increasing efficiency.
+
+## Programmable Logic Devices (PLDs)
+PLDs are electronic components used to build reconfigurable digital circuits. Unlike logic gates which have a fixed function, a PLD has an undefined function at the time of manufacture. They are programmed to perform specific logic functions, often used in memory decoding and interfacing in microprocessor systems.
+        `,
+        quiz: [
+          {
+            question: "Which type of architecture relies heavily on a single register for ALU operations?",
+            options: ["Register-based", "Accumulator-based", "Stack-based", "Memory-based"],
+            correctIndex: 1
+          }
+        ]
+      },
+      {
+        id: 'memory-io',
+        title: 'Memory & I/O Techniques',
+        content: `
+# Memory and I/O
+
+## Main Memory Array Design
+Memory in a microprocessor system is organized as an array of storage cells. Designing the array involves address decoding (using decoders or PLDs) to select specific memory chips based on the address bus signals.
+
+## Memory Management Concepts
+Memory management involves organizing how memory is accessed and protected. In early systems, this meant simple segmentation (like in 8086). In advanced systems, it involves virtual memory and paging.
+
+## Input/Output Techniques
+1. **Programmed I/O**: The CPU constantly checks (polling) the I/O device to see if it's ready.
+2. **Interrupt-driven I/O**: The device sends an interrupt signal to the CPU when it needs attention, freeing the CPU to do other work.
+3. **Direct Memory Access (DMA)**: A specialized controller transfers data directly between I/O and memory without CPU intervention.
+        `,
+        quiz: [
+          {
+            question: "Which I/O technique transfers data directly between an I/O device and memory without CPU intervention?",
+            options: ["Programmed I/O", "Interrupt-driven I/O", "DMA", "Polling"],
+            correctIndex: 2
+          }
+        ]
+      },
+      {
+        id: 'arch-8085-8086',
+        title: '8085 & 8086 Architecture',
+        content: `
+# Internal Architecture: 8085 vs 8086
+
+## Intel 8085 (8-bit)
+- **ALU**: 8-bit operations.
+- **Registers**: A, B, C, D, E, H, L (8-bit each).
+- **Buses**: 8-bit data bus, 16-bit address bus (64KB memory).
+
+## Intel 8086 (16-bit)
+- Divided into **Bus Interface Unit (BIU)** and **Execution Unit (EU)**.
+- **Registers**: AX, BX, CX, DX (16-bit, divisible into 8-bit halves).
+- **Buses**: 16-bit data bus, 20-bit address bus (1MB memory).
+
+## Addressing Modes & Instruction Format
+Addressing modes define how operands are located. 
+- **8085**: Immediate, Register, Direct, Indirect, Implied.
+- **8086**: Adds complex modes like Based, Indexed, and Based-Indexed.
+Instruction formats vary from 1-byte (implied) to multi-byte (containing opcodes, displacements, and immediate data).
+        `,
+        quiz: [
+          {
+            question: "Which unit in the 8086 is responsible for fetching instructions and managing the queue?",
+            options: ["Execution Unit (EU)", "Bus Interface Unit (BIU)", "ALU", "Interrupt Controller"],
+            correctIndex: 1
+          }
+        ]
+      },
+      {
+        id: 'hardware-interfacing',
+        title: 'Hardware & Interfacing',
+        content: `
+# Hardware Configurations
+
+## Pin Configuration & Function
+The 8086 is a 40-pin IC. Key pins include AD0-AD15 (multiplexed address/data), A16-A19 (multiplexed address/status), NMI, INTR, and MN/MX'.
+
+## Maximum / Minimum Mode
+The 8086 can operate in two modes, determined by the MN/MX' pin:
+- **Minimum Mode**: The 8086 generates all control signals itself. Used for single-processor systems.
+- **Maximum Mode**: Control signals are generated by an external bus controller (8288). Used for multiprocessor systems (e.g., with an 8087 coprocessor).
+
+## Read/Write Cycle & Memory Bank
+- **Bus Cycles**: A standard 8086 bus cycle takes 4 clock periods (T1, T2, T3, T4).
+- **Memory Banking**: The 1MB memory of 8086 is divided into two 512KB banks: Even (Lower) bank connected to D0-D7, and Odd (Upper) bank connected to D8-D15. BHE' (Bus High Enable) and A0 are used to select the banks.
+        `,
+        quiz: [
+          {
+            question: "Which mode is used when the 8086 is part of a multiprocessor system?",
+            options: ["Minimum Mode", "Maximum Mode", "Protected Mode", "Real Mode"],
+            correctIndex: 1
+          }
+        ]
+      },
+      {
+        id: 'interrupts-dma',
+        title: 'Interrupts & DMA',
+        content: `
+# Interrupts and DMA
+
+## Interrupts & Handling
+An interrupt halts normal program execution to handle an urgent event. 
+- **Hardware Interrupts**: Triggered by external pins (NMI, INTR).
+- **Software Interrupts**: Triggered by instructions (INT n).
+The CPU saves its state (flags, CS, IP) on the stack and jumps to an Interrupt Service Routine (ISR) using the Interrupt Vector Table (IVT).
+
+## Interrupt Controller
+A programmable interrupt controller (like the 8259A) manages multiple hardware interrupts, prioritizing them and passing the vector to the CPU.
+
+## DMA (Direct Memory Access)
+Managed by a DMA Controller (like the 8237). It requests control of the buses from the CPU (using HOLD/HLDA pins) to transfer data rapidly between I/O and memory.
+        `,
+        quiz: [
+          {
+            question: "Which component manages multiple hardware interrupts and prioritizes them?",
+            options: ["DMA Controller", "Bus Controller", "Interrupt Controller", "ALU"],
+            correctIndex: 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'advanced',
+    title: 'Advanced Microprocessors',
+    description: 'Internal architecture, memory management, and overview of advanced processors.',
+    lessons: [
+      {
+        id: 'x86-evolution',
+        title: 'Intel x86 Evolution',
+        content: `
+# Evolution from 80186 to Pentium
+
+## Intel 80186 & 80286
+- **80186**: Highly integrated, included DMA, timers, and interrupt controllers on-chip.
+- **80286**: Introduced **Protected Mode**, allowing memory protection and addressing up to 16MB of physical memory and 1GB of virtual memory.
+
+## Intel 80386 & 80486
+- **80386**: The first 32-bit x86 processor. 32-bit registers, 32-bit data/address buses (4GB memory). Introduced paging for advanced memory management.
+- **80486**: Integrated the math coprocessor (FPU) and L1 cache on-chip, heavily pipelined for faster execution.
+
+## Pentium Microprocessors
+Introduced superscalar architecture (multiple pipelines), allowing it to execute more than one instruction per clock cycle. Featured separate data and instruction caches.
+        `,
+        quiz: [
+          {
+            question: "Which Intel processor was the first to introduce a 32-bit architecture?",
+            options: ["80286", "80386", "80486", "Pentium"],
+            correctIndex: 1
+          }
+        ]
+      },
+      {
+        id: 'memory-protection',
+        title: 'Memory Management & Protection',
+        content: `
+# Advanced Memory Management
+
+Starting with the 80286 and maturing in the 80386, advanced memory management became a staple.
+
+## Protected Mode
+Unlike Real Mode (which acts like a fast 8086), Protected Mode uses descriptor tables (GDT, LDT) to define memory segments. 
+- **Protection**: Segments have privilege levels (Rings 0-3). User applications (Ring 3) cannot access OS memory (Ring 0), preventing crashes.
+
+## Paging
+Introduced in the 80386, paging divides memory into fixed-size blocks (typically 4KB). It allows the OS to map virtual addresses to physical addresses, enabling virtual memory (using disk space as RAM).
+        `,
+        quiz: [
+          {
+            question: "In Protected Mode, which privilege level (Ring) is typically reserved for the Operating System kernel?",
+            options: ["Ring 0", "Ring 1", "Ring 2", "Ring 3"],
+            correctIndex: 0
+          }
+        ]
+      },
+      {
+        id: 'risc-alpha',
+        title: 'RISC, Coprocessors & Alpha',
+        content: `
+# Alternative Architectures
+
+## RISC Processors
+Reduced Instruction Set Computer (RISC) focuses on a small, highly optimized set of instructions that execute in a single clock cycle. 
+- **Characteristics**: Large number of registers, load/store architecture (only specific instructions access memory), fixed-length instructions.
+
+## Coprocessors
+A specialized processor that assists the main CPU. The most common historical example is the Math Coprocessor (e.g., 8087 for the 8086), which handled complex floating-point arithmetic much faster than the main CPU could in software.
+
+## Alpha Processor
+Developed by DEC, the Alpha architecture was a highly influential 64-bit RISC architecture known for its extremely high clock speeds and performance in the 1990s and early 2000s.
+        `,
+        quiz: [
+          {
+            question: "Which of the following is a key characteristic of a RISC architecture?",
+            options: ["Variable-length instructions", "Complex addressing modes", "Load/store architecture", "Small number of registers"],
+            correctIndex: 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'assembly',
+    title: 'Assembly Language',
+    description: 'Programming with 8086 instructions, jumps, strings, stacks, and macros.',
+    lessons: [
+      {
+        id: '8086-instructions-jumps',
+        title: 'Instructions & Jumps',
+        content: `
+# 8086 Programming Basics
+
+## Data Transfer & Arithmetic
+- \`MOV dest, src\`: Copies data.
+- \`ADD dest, src\`: Adds src to dest.
+- \`SUB dest, src\`: Subtracts src from dest.
+
+## Conditional and Unconditional Jumps
+Jumps alter the flow of execution by changing the Instruction Pointer (IP).
+- **Unconditional Jump**: \`JMP label\` always jumps to the specified label.
+- **Conditional Jumps**: Jump based on the state of the Flags register (updated by arithmetic/logic or \`CMP\` instructions).
+  - \`JE\` / \`JZ\`: Jump if Equal / Zero.
+  - \`JNE\` / \`JNZ\`: Jump if Not Equal / Not Zero.
+  - \`JG\` / \`JL\`: Jump if Greater / Less (signed).
+
+\`\`\`assembly
+  CMP AX, BX
+  JG is_greater  ; Jumps if AX > BX
+  ; code if AX <= BX
+is_greater:
+  ; code if AX > BX
+\`\`\`
+        `,
+        quiz: [
+          {
+            question: "Which instruction performs an unconditional jump?",
+            options: ["JE", "JMP", "JNZ", "CMP"],
+            correctIndex: 1
+          }
+        ]
+      },
+      {
+        id: 'strings-stacks',
+        title: 'String & Stack Operations',
+        content: `
+# Strings and Stacks
+
+## String Instructions
+8086 has powerful instructions for handling blocks of memory (strings). They use SI (Source Index) and DI (Destination Index) registers.
+- \`MOVSB\` / \`MOVSW\`: Move string byte/word.
+- \`CMPSB\` / \`CMPSW\`: Compare string byte/word.
+- \`REP\`: A prefix that repeats the string instruction based on the CX register count.
+
+## Stack Operations
+The stack is a Last-In-First-Out (LIFO) memory structure, managed by the Stack Pointer (SP).
+- \`PUSH src\`: Decrements SP by 2, then stores the 16-bit operand on the stack.
+- \`POP dest\`: Retrieves a 16-bit value from the stack into the destination, then increments SP by 2.
+Stacks are crucial for saving register states and handling subroutines.
+        `,
+        quiz: [
+          {
+            question: "Which register is used as a counter when using the REP prefix with string instructions?",
+            options: ["AX", "BX", "CX", "DX"],
+            correctIndex: 2
+          }
+        ]
+      },
+      {
+        id: 'procedures-macros',
+        title: 'Procedures & Macros',
+        content: `
+# Procedures and Macros
+
+## Procedures (Subroutines)
+A procedure is a reusable block of code. 
+- Called using the \`CALL\` instruction (which pushes the return address to the stack).
+- Returns using the \`RET\` instruction (which pops the return address from the stack).
+
+## Reentrant and Recursive Procedures
+- **Reentrant**: A procedure that can be interrupted, called again by the interrupting program, and still execute correctly when returned to. It must use the stack or registers for local variables, not fixed memory.
+- **Recursive**: A procedure that calls itself. It heavily relies on the stack to keep track of multiple instances of its variables and return addresses.
+
+## Macros
+A macro is a sequence of instructions assigned a name. Unlike a procedure (which is jumped to at runtime), a macro is expanded **inline** by the assembler during compilation. It's faster (no CALL/RET overhead) but increases the final program size if used multiple times.
+        `,
+        quiz: [
+          {
+            question: "Which of the following is expanded inline by the assembler during compilation?",
+            options: ["Procedure", "Macro", "Interrupt", "Subroutine"],
+            correctIndex: 1
+          }
+        ]
+      }
+    ]
+  }
+];
