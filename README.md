@@ -1,20 +1,40 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# MicroMaster: 8085 & 8086 Microprocessor Tutor
 
-# Run and deploy your AI Studio app
+MicroMaster is a comprehensive, interactive web application designed to help students, hobbyists, and engineers master the Intel 8085 and 8086 microprocessor architectures. 
 
-This contains everything you need to run your app locally.
+Whether you are learning about basic instruction sets, memory management, or complex assembly language programming, MicroMaster provides the tools and guidance you need.
 
-View your app in AI Studio: https://ai.studio/apps/eaa796bc-3aeb-4944-a7d8-d0ee86ed8335
+## 🚀 Features
 
-## Run Locally
+- **AI Micro Tutor:** An intelligent, context-aware AI assistant powered by NVIDIA's Nemotron-3 120B reasoning model (via OpenRouter). It can explain complex architectural concepts, debug assembly code, and answer specific questions about 8085/8086 microprocessors.
+- **Deep Reasoning:** The AI Tutor utilizes advanced reasoning capabilities to think step-by-step through complex microprocessor problems before answering.
+- **Modern UI/UX:** A clean, responsive interface built with React and Tailwind CSS, featuring full Dark Mode support.
+- **Interactive Learning:** Ask questions and get immediate, educational, and professional responses tailored to microprocessor studies.
 
-**Prerequisites:**  Node.js
+## 🛠️ Tech Stack
 
+- **Frontend:** React 19, Tailwind CSS v4, Framer Motion, Lucide Icons
+- **Backend:** Express.js (adapted for Vercel Serverless Functions)
+- **AI Integration:** OpenRouter API (`nvidia/nemotron-3-super-120b-a12b:free`)
+- **Deployment:** Vercel
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## ⚙️ Local Development
+
+1. Clone the repository.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file based on `.env.example` and add your OpenRouter API key:
+   ```env
+   OPENROUTER_API_KEY=your_api_key_here
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 🌐 Live Application
+
+Check out the live deployed application here:
+**[https://microprocessor-eight.vercel.app](https://microprocessor-eight.vercel.app)**
