@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 
 interface Message {
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   content: string;
+  reasoning_details?: any;
 }
 
 interface TutorProps {
@@ -19,16 +20,47 @@ export default function Tutor({ context, onClose }: TutorProps) {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Initialize with system prompt and context when context changes
+  React.useEffect(() => {
+    setMessages([]);
+  }, [context]);
+
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = { role: 'user', content: input };
+    
+    // Prepare the full message history to send to the API
+    let apiMessages = [...messages];
+    
+    // If this is the first message, prepend the system instruction and context
+    if (apiMessages.length === 0) {
+      const systemInstruction = "You are a world-class expert on Intel 8085 and 8086 microprocessors. You help students achieve mastery by explaining complex concepts simply, providing assembly code examples, and correcting misunderstandings.";
+      const promptContext = `You are an expert microprocessor professor specializing in 8085 and 8086 architectures. 
+Answer the following question based on the provided context or your general expertise.
+Keep the tone educational, clear, and professional.
+
+Context: ${context}`;
+      
+      apiMessages.push({ role: 'system', content: systemInstruction });
+      // We modify the first user message to include the context
+      apiMessages.push({ role: 'user', content: `${promptContext}\n\nQuestion: ${input}` });
+    } else {
+      apiMessages.push(userMessage);
+    }
+
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
-    const response = await askTutor(input, context);
-    const assistantMessage: Message = { role: 'assistant', content: response };
+    const response = await askTutor(apiMessages);
+    
+    const assistantMessage: Message = { 
+      role: 'assistant', 
+      content: response.text,
+      reasoning_details: response.reasoning_details
+    };
+    
     setMessages(prev => [...prev, assistantMessage]);
     setIsLoading(false);
   };
@@ -84,15 +116,16 @@ export default function Tutor({ context, onClose }: TutorProps) {
         </AnimatePresence>
         {isLoading && (
           <div className="flex gap-3">
-            <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center shrink-0">
               <Loader2 size={16} className="animate-spin text-slate-500 dark:text-slate-400" />
             </div>
-            <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-tl-none">
-              <span className="flex gap-1">
+            <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-tl-none flex flex-col gap-2">
+              <div className="flex gap-1 items-center h-6">
                 <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
                 <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
                 <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-              </span>
+              </div>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Thinking deeply (this reasoning model may take up to 60 seconds)...</span>
             </div>
           </div>
         )}

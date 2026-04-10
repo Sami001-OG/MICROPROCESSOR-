@@ -1,21 +1,30 @@
-export async function askTutor(question: string, context: string) {
+export async function askTutor(messages: any[]) {
   try {
     const response = await fetch('/api/tutor', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ question, context }),
+      body: JSON.stringify({ messages }),
     });
 
+    const data = await response.json().catch(() => ({}));
+
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      throw new Error(data.error || `API error: ${response.status}`);
     }
 
-    const data = await response.json();
-    return data.text;
-  } catch (error) {
+    return {
+      text: data.text || "I'm sorry, I couldn't generate a response.",
+      reasoning_details: data.reasoning_details
+    };
+  } catch (error: any) {
     console.error("Tutor API Error:", error);
-    return "I'm sorry, I'm having trouble connecting to my knowledge base right now. Please try again later.";
+    
+    if (error.message?.includes("API Key configuration missing")) {
+      return { text: "⚠️ Configuration Error: The OPENROUTER_API_KEY environment variable is missing. Since you deployed to Vercel, you must add this key in your Vercel Project Settings -> Environment Variables, and then redeploy." };
+    }
+    
+    return { text: `I'm sorry, I'm having trouble connecting to my knowledge base right now. Error: ${error.message || 'Unknown error'}` };
   }
 }
