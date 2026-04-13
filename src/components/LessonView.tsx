@@ -69,7 +69,7 @@ export default function LessonView({ lesson, onComplete, onNextLesson }: LessonV
       >
         <div className="flex items-center gap-3 mb-6">
           <HelpCircle className="text-blue-400" />
-          <h3 className="text-xl font-bold">Knowledge Check</h3>
+          <h3 className="text-xl font-bold">নলেজ চেক</h3>
         </div>
 
         <AnimatePresence mode="wait">
@@ -115,7 +115,7 @@ export default function LessonView({ lesson, onComplete, onNextLesson }: LessonV
                     onClick={nextQuestion}
                     className="tech-button tech-button-primary bg-blue-600 hover:bg-blue-500"
                   >
-                    {quizState.currentQuestion + 1 < lesson.quiz.length ? "Next Question" : "Complete Lesson"}
+                    {quizState.currentQuestion + 1 < lesson.quiz.length ? "পরবর্তী প্রশ্ন" : "লেসন সম্পূর্ণ করুন"}
                     <ChevronRight size={18} />
                   </button>
                 </motion.div>
@@ -130,13 +130,13 @@ export default function LessonView({ lesson, onComplete, onNextLesson }: LessonV
               <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 size={40} className="text-white" />
               </div>
-              <h4 className="text-2xl font-bold mb-2">Lesson Mastered!</h4>
-              <p className="text-slate-400 mb-6">You've successfully completed this module. Keep going to achieve full mastery.</p>
+              <h4 className="text-2xl font-bold mb-2">লেসন সম্পন্ন হয়েছে!</h4>
+              <p className="text-slate-400 mb-6">আপনি সফলভাবে এই মডিউলটি সম্পন্ন করেছেন। সম্পূর্ণ দক্ষতা অর্জন করতে চালিয়ে যান।</p>
               <button
                 onClick={onNextLesson}
                 className="tech-button tech-button-primary bg-blue-600 hover:bg-blue-500 mx-auto"
               >
-                Next Lesson
+                পরবর্তী লেসন
                 <ChevronRight size={18} />
               </button>
             </motion.div>

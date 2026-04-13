@@ -15,16 +15,16 @@ export async function askTutor(messages: any[]) {
     }
 
     return {
-      text: data.text || "I'm sorry, I couldn't generate a response.",
+      text: data.text || "দুঃখিত, আমি কোনো উত্তর তৈরি করতে পারিনি।",
       reasoning_details: data.reasoning_details
     };
   } catch (error: any) {
     console.error("Tutor API Error:", error);
     
     if (error.message?.includes("API Key configuration missing")) {
-      return { text: "⚠️ Configuration Error: The OPENROUTER_API_KEY environment variable is missing. Since you deployed to Vercel, you must add this key in your Vercel Project Settings -> Environment Variables, and then redeploy." };
+      return { text: "⚠️ কনফিগারেশন ত্রুটি: OPENROUTER_API_KEY এনভায়রনমেন্ট ভেরিয়েবলটি অনুপস্থিত। যেহেতু আপনি Vercel-এ ডিপ্লয় করেছেন, আপনাকে অবশ্যই আপনার Vercel Project Settings -> Environment Variables-এ এই কী (key) যোগ করতে হবে এবং তারপর পুনরায় ডিপ্লয় করতে হবে।" };
     }
     
-    return { text: `I'm sorry, I'm having trouble connecting to my knowledge base right now. Error: ${error.message || 'Unknown error'}` };
+    return { text: `দুঃখিত, আমার নলেজ বেসের সাথে সংযোগ করতে সমস্যা হচ্ছে। ত্রুটি: ${error.message || 'অজানা ত্রুটি'}` };
   }
 }

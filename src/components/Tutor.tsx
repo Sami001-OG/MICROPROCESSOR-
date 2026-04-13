@@ -35,10 +35,10 @@ export default function Tutor({ context, onClose }: TutorProps) {
     
     // If this is the first message, prepend the system instruction and context
     if (apiMessages.length === 0) {
-      const systemInstruction = "You are a world-class expert on Intel 8085 and 8086 microprocessors. You help students achieve mastery by explaining complex concepts simply, providing assembly code examples, and correcting misunderstandings.";
+      const systemInstruction = "You are a world-class expert on Intel 8085 and 8086 microprocessors. You help students achieve mastery by explaining complex concepts simply, providing assembly code examples, and correcting misunderstandings. YOU MUST ALWAYS RESPOND IN BENGALI (বাংলা).";
       const promptContext = `You are an expert microprocessor professor specializing in 8085 and 8086 architectures. 
 Answer the following question based on the provided context or your general expertise.
-Keep the tone educational, clear, and professional.
+Keep the tone educational, clear, and professional. YOU MUST ANSWER IN BENGALI (বাংলা).
 
 Context: ${context}`;
       
@@ -70,7 +70,7 @@ Context: ${context}`;
       <div className="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-between shrink-0 transition-colors duration-300">
         <div className="flex items-center gap-2">
           <Bot size={20} className="text-slate-900 dark:text-slate-100" />
-          <h3 className="font-bold text-slate-900 dark:text-white">AI Micro Tutor</h3>
+          <h3 className="font-bold text-slate-900 dark:text-white">এআই মাইক্রো টিউটর</h3>
         </div>
         {onClose && (
           <button onClick={onClose} className="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg sm:hidden">
@@ -83,7 +83,7 @@ Context: ${context}`;
         {messages.length === 0 && (
           <div className="text-center text-slate-500 dark:text-slate-400 mt-10">
             <Bot size={48} className="mx-auto mb-4 opacity-20" />
-            <p className="text-sm">Ask me anything about 8085 or 8086 architecture, instructions, or assembly code!</p>
+            <p className="text-sm">৮০৮৫ বা ৮০৮৬ আর্কিটেকচার, ইনস্ট্রাকশন বা অ্যাসেম্বলি কোড সম্পর্কে আমাকে যেকোনো কিছু জিজ্ঞাসা করুন!</p>
           </div>
         )}
         <AnimatePresence initial={false}>
@@ -125,7 +125,7 @@ Context: ${context}`;
                 <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
                 <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
               </div>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Thinking deeply (this reasoning model may take up to 60 seconds)...</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">গভীরভাবে চিন্তা করছে (এই রিজনিং মডেলটি ৬০ সেকেন্ড পর্যন্ত সময় নিতে পারে)...</span>
             </div>
           </div>
         )}
@@ -138,7 +138,7 @@ Context: ${context}`;
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask a question..."
+            placeholder="একটি প্রশ্ন করুন..."
             className="flex-1 bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-base text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-slate-900 dark:focus:ring-blue-500 outline-none transition-colors"
           />
           <button

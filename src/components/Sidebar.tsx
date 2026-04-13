@@ -28,8 +28,8 @@ export default function Sidebar({
             <Cpu size={24} />
           </div>
           <div>
-            <h1 className="font-black text-xl tracking-tighter leading-none dark:text-white">MICROMASTER</h1>
-            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mt-1">8085 & 8086 Mastery</p>
+            <h1 className="font-black text-xl tracking-tighter leading-none dark:text-white">মাইক্রোমাস্টার</h1>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mt-1">৮০৮৫ এবং ৮০৮৬ মাস্টারি</p>
           </div>
         </div>
         {onClose && (
@@ -48,7 +48,7 @@ export default function Sidebar({
           )}
         >
           <LayoutDashboard size={20} />
-          Dashboard
+          ড্যাশবোর্ড
         </button>
 
         {curriculum.map((module) => (
@@ -91,7 +91,7 @@ export default function Sidebar({
             JD
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">Master Candidate</p>
+            <p className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">মাস্টার ক্যান্ডিডেট</p>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">tontonsing17@gmail.com</p>
           </div>
         </div>

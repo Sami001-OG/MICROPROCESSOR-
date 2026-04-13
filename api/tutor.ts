@@ -53,7 +53,7 @@ export default async function handler(req: any, res: any) {
     }
 
     return res.status(200).json({ 
-      text: message.content || "I'm sorry, I couldn't generate a response.",
+      text: message.content || "দুঃখিত, আমি কোনো উত্তর তৈরি করতে পারিনি।",
       reasoning_details: message.reasoning_details
     });
   } catch (error) {

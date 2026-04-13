@@ -19,205 +19,205 @@ export interface Module {
 export const curriculum: Module[] = [
   {
     id: 'microprocessors',
-    title: 'Microprocessors',
-    description: 'Evolution, memory design, architecture of 8085/8086, and interfacing.',
+    title: 'মাইক্রোপ্রসেসর',
+    description: 'বিবর্তন, মেমরি ডিজাইন, ৮০৮৫/৮০৮৬ এর আর্কিটেকচার এবং ইন্টারফেসিং।',
     lessons: [
       {
         id: 'evolution-plds',
-        title: 'Evolution & Logic Devices',
+        title: 'বিবর্তন এবং লজিক ডিভাইস',
         content: `
-# Evolution of Microprocessors
+# মাইক্রোপ্রসেসরের বিবর্তন
 
-The microprocessor has evolved dramatically since its inception. It is the "brain" of a computer, integrating the functions of a central processing unit (CPU) onto a single integrated circuit (IC).
+মাইক্রোপ্রসেসর তার সূচনালগ্ন থেকে নাটকীয়ভাবে বিবর্তিত হয়েছে। এটি একটি কম্পিউটারের "মস্তিষ্ক", যা একটি সেন্ট্রাল প্রসেসিং ইউনিটের (CPU) ফাংশনগুলোকে একটি একক ইন্টিগ্রেটেড সার্কিটে (IC) একত্রিত করে।
 
-## Generations of Microprocessors
-1. **First Generation (4-bit)**: Intel 4004 (1971). Used for simple calculators.
-2. **Second Generation (8-bit)**: Intel 8008, 8080, and **8085**. Faster, more memory addressing (up to 64KB).
-3. **Third Generation (16-bit)**: Intel **8086**, 8088, Zilog Z8000. Introduced pipelining and segmented memory (up to 1MB).
-4. **Fourth Generation (32-bit)**: Intel 80386, 80486. Introduced protected mode, paging, and virtual memory (up to 4GB).
-5. **Fifth Generation & Beyond (64-bit/Multi-core)**: Pentium, Core i-series, AMD Ryzen. Superscalar execution, massive caches, and multiple cores.
+## মাইক্রোপ্রসেসরের প্রজন্ম
+১. **প্রথম প্রজন্ম (৪-বিট)**: ইন্টেল ৪০০৪ (১৯৭১)। সাধারণ ক্যালকুলেটরের জন্য ব্যবহৃত হতো।
+২. **দ্বিতীয় প্রজন্ম (৮-বিট)**: ইন্টেল ৮০০৮, ৮০৮০ এবং **৮০৮৫**। দ্রুততর, আরও বেশি মেমরি অ্যাড্রেসিং (৬৪KB পর্যন্ত)।
+৩. **তৃতীয় প্রজন্ম (১৬-বিট)**: ইন্টেল **৮০৮৬**, ৮০৮৮, জিলগ Z8000। পাইপলাইনিং এবং সেগমেন্টেড মেমরি (১MB পর্যন্ত) চালু করেছে।
+৪. **চতুর্থ প্রজন্ম (৩২-বিট)**: ইন্টেল ৮০৩৮৬, ৮০৪৮৬। প্রোটেক্টেড মোড, পেজিং এবং ভার্চুয়াল মেমরি (৪GB পর্যন্ত) চালু করেছে।
+৫. **পঞ্চম প্রজন্ম এবং তার পরে (৬৪-বিট/মাল্টি-কোর)**: পেন্টিয়াম, কোর আই-সিরিজ, এএমডি রাইজেন। সুপারস্কেলার এক্সিকিউশন, বিশাল ক্যাশ এবং একাধিক কোর।
 
-## Register-Based vs Accumulator-Based Architecture
+## রেজিস্টার-ভিত্তিক বনাম অ্যাকুমুলেটর-ভিত্তিক আর্কিটেকচার
 
-### Accumulator-Based (e.g., 8085)
-In this architecture, one operand of an Arithmetic Logic Unit (ALU) operation is implicitly the **Accumulator** register. The result is also stored back in the Accumulator.
-* **Pros**: Simple instruction decoding, shorter instructions.
-* **Cons**: High memory traffic (bottleneck) because data must constantly be moved in and out of the single accumulator.
+### অ্যাকুমুলেটর-ভিত্তিক (যেমন, ৮০৮৫)
+এই আর্কিটেকচারে, অ্যারিথমেটিক লজিক ইউনিট (ALU) অপারেশনের একটি অপারেন্ড পরোক্ষভাবে **অ্যাকুমুলেটর** রেজিস্টার। ফলাফলটিও অ্যাকুমুলেটরে ফিরে সংরক্ষিত হয়।
+* **সুবিধা**: সহজ ইনস্ট্রাকশন ডিকোডিং, ছোট ইনস্ট্রাকশন।
+* **অসুবিধা**: উচ্চ মেমরি ট্রাফিক (বটলনেক) কারণ ডেটা ক্রমাগত একক অ্যাকুমুলেটরের ভেতরে এবং বাইরে সরাতে হয়।
 
 \`\`\`text
-[Memory/Register] ---> (ALU) <--- [Accumulator]
+[মেমরি/রেজিস্টার] ---> (ALU) <--- [অ্যাকুমুলেটর]
                           |
                           v
-                    [Accumulator]
+                    [অ্যাকুমুলেটর]
 \`\`\`
 
-### Register-Based (e.g., 8086, Modern CPUs)
-Features multiple general-purpose registers. Any register can act as a source or destination for ALU operations.
-* **Pros**: Faster execution, less memory access, easier for compilers to optimize.
-* **Cons**: Longer instruction encoding (need to specify which registers are used).
+### রেজিস্টার-ভিত্তিক (যেমন, ৮০৮৬, আধুনিক CPU)
+একাধিক সাধারণ-উদ্দেশ্য (general-purpose) রেজিস্টার বৈশিষ্ট্যযুক্ত। যেকোনো রেজিস্টার ALU অপারেশনের জন্য সোর্স বা ডেস্টিনেশন হিসেবে কাজ করতে পারে।
+* **সুবিধা**: দ্রুত এক্সিকিউশন, কম মেমরি অ্যাক্সেস, কম্পাইলারদের জন্য অপ্টিমাইজ করা সহজ।
+* **অসুবিধা**: দীর্ঘ ইনস্ট্রাকশন এনকোডিং (কোন রেজিস্টারগুলো ব্যবহৃত হচ্ছে তা নির্দিষ্ট করতে হয়)।
 
 \`\`\`text
-[Register A] ---> (ALU) <--- [Register B]
+[রেজিস্টার A] ---> (ALU) <--- [রেজিস্টার B]
                     |
                     v
-               [Register C]
+               [রেজিস্টার C]
 \`\`\`
 
-## Programmable Logic Devices (PLDs)
-PLDs are electronic components used to build reconfigurable digital circuits. Unlike standard logic gates (AND, OR, NOT) which have fixed functions, PLDs can be programmed after manufacturing.
+## প্রোগ্রামেবল লজিক ডিভাইস (PLDs)
+PLD হলো ইলেকট্রনিক উপাদান যা রিকনফিগারযোগ্য ডিজিটাল সার্কিট তৈরি করতে ব্যবহৃত হয়। স্ট্যান্ডার্ড লজিক গেট (AND, OR, NOT) এর বিপরীতে যাদের নির্দিষ্ট ফাংশন রয়েছে, PLD-গুলোকে ম্যানুফ্যাকচারিং এর পরে প্রোগ্রাম করা যায়।
 
-* **Types**: PROM, PLA (Programmable Logic Array), PAL (Programmable Array Logic), CPLD, FPGA.
-* **Usage in Microprocessors**: Used for address decoding, generating control signals, and interfacing memory/IO devices, reducing the total chip count on a motherboard.
+* **প্রকারভেদ**: PROM, PLA (Programmable Logic Array), PAL (Programmable Array Logic), CPLD, FPGA।
+* **মাইক্রোপ্রসেসরে ব্যবহার**: অ্যাড্রেস ডিকোডিং, কন্ট্রোল সিগন্যাল তৈরি এবং মেমরি/IO ডিভাইস ইন্টারফেসিং এর জন্য ব্যবহৃত হয়, যা মাদারবোর্ডে মোট চিপের সংখ্যা কমায়।
         `,
         quiz: [
           {
-            question: "Which architecture relies on a single implicit register for one operand and the result of ALU operations?",
-            options: ["Register-based", "Accumulator-based", "Stack-based", "Memory-memory"],
+            question: "কোন আর্কিটেকচারটি একটি অপারেন্ড এবং ALU অপারেশনের ফলাফলের জন্য একটি একক অন্তর্নিহিত রেজিস্টারের উপর নির্ভর করে?",
+            options: ["রেজিস্টার-ভিত্তিক", "অ্যাকুমুলেটর-ভিত্তিক", "স্ট্যাক-ভিত্তিক", "মেমরি-মেমরি"],
             correctIndex: 1
           }
         ]
       },
       {
         id: 'memory-io',
-        title: 'Memory & I/O Techniques',
+        title: 'মেমরি এবং আই/ও টেকনিকস',
         content: `
-# Main Memory Array Design & I/O
+# মেইন মেমরি অ্যারে ডিজাইন এবং আই/ও
 
-## Main Memory Array Design
-Memory is organized as a 2D array of cells. To access a specific byte, the CPU places an address on the **Address Bus**. 
-A **Decoder** (often a PLD) translates this address to select a specific memory chip (Chip Select / CS).
+## মেইন মেমরি অ্যারে ডিজাইন
+মেমরিকে সেলগুলোর একটি 2D অ্যারে হিসেবে সাজানো হয়। একটি নির্দিষ্ট বাইট অ্যাক্সেস করতে, CPU **অ্যাড্রেস বাস**-এ একটি অ্যাড্রেস রাখে। 
+একটি **ডিকোডার** (প্রায়শই একটি PLD) এই অ্যাড্রেসটিকে অনুবাদ করে একটি নির্দিষ্ট মেমরি চিপ (Chip Select / CS) নির্বাচন করে।
 
 \`\`\`text
-Address Bus (e.g., A0-A15)
+অ্যাড্রেস বাস (যেমন, A0-A15)
       |
       v
 +-----------+       +-----------------+
-|  Decoder  | ----> | Memory Chip (CS)|
+|  ডিকোডার  | ----> | মেমরি চিপ (CS)  |
 +-----------+       +-----------------+
                           ^
-                          | Data Bus (D0-D7)
+                          | ডেটা বাস (D0-D7)
 \`\`\`
 
-## Memory Management Concepts
-Memory management is crucial for system stability and multitasking.
-1. **Segmentation**: Divides memory into variable-sized segments (Code, Data, Stack). Used heavily in 8086.
-2. **Paging**: Divides memory into fixed-size pages (e.g., 4KB). Allows **Virtual Memory**, where the OS uses disk space to simulate extra RAM.
+## মেমরি ম্যানেজমেন্ট কনসেপ্ট
+সিস্টেমের স্থিতিশীলতা এবং মাল্টিটাস্কিংয়ের জন্য মেমরি ম্যানেজমেন্ট অত্যন্ত গুরুত্বপূর্ণ।
+১. **সেগমেন্টেশন**: মেমরিকে পরিবর্তনশীল আকারের সেগমেন্টে (Code, Data, Stack) ভাগ করে। ৮০৮৬-এ ব্যাপকভাবে ব্যবহৃত হয়।
+২. **পেজিং**: মেমরিকে নির্দিষ্ট আকারের পেজে (যেমন, 4KB) ভাগ করে। **ভার্চুয়াল মেমরি** অনুমোদন করে, যেখানে OS অতিরিক্ত RAM অনুকরণ করতে ডিস্ক স্পেস ব্যবহার করে।
 
-## Input/Output (I/O) Techniques
-How does the CPU talk to external devices (keyboard, disk, display)?
+## ইনপুট/আউটপুট (I/O) টেকনিকস
+CPU কীভাবে বাহ্যিক ডিভাইসগুলোর (কিবোর্ড, ডিস্ক, ডিসপ্লে) সাথে কথা বলে?
 
-1. **Programmed I/O (Polling)**: 
-   The CPU constantly checks the status register of the I/O device in a loop.
-   * *Analogy*: Asking "Are we there yet?" every 5 seconds.
-   * *Pros*: Simple hardware. *Cons*: Wastes CPU cycles.
+১. **প্রোগ্রামড I/O (পোলিং)**: 
+   CPU ক্রমাগত একটি লুপে I/O ডিভাইসের স্ট্যাটাস রেজিস্টার চেক করে।
+   * *উপমা*: প্রতি ৫ সেকেন্ডে জিজ্ঞাসা করা "আমরা কি পৌঁছেছি?"।
+   * *সুবিধা*: সহজ হার্ডওয়্যার। *অসুবিধা*: CPU সাইকেল নষ্ট করে।
 
-2. **Interrupt-Driven I/O**:
-   The CPU does its normal work. When the I/O device is ready, it sends a hardware signal (Interrupt) to the CPU.
-   * *Analogy*: Waiting for a doorbell to ring.
-   * *Pros*: Efficient CPU usage. *Cons*: Overhead of saving/restoring CPU state.
+২. **ইন্টারাপ্ট-ড্রিভেন I/O**:
+   CPU তার স্বাভাবিক কাজ করে। যখন I/O ডিভাইস প্রস্তুত হয়, এটি CPU-তে একটি হার্ডওয়্যার সিগন্যাল (ইন্টারাপ্ট) পাঠায়।
+   * *উপমা*: ডোরবেল বাজার জন্য অপেক্ষা করা।
+   * *সুবিধা*: দক্ষ CPU ব্যবহার। *অসুবিধা*: CPU স্ট্যাটাস সেভ/রিস্টোর করার ওভারহেড।
 
-3. **Direct Memory Access (DMA)**:
-   For large data transfers (e.g., reading a file from disk), the CPU tells a **DMA Controller** to handle it. The DMA takes over the system buses and transfers data directly between I/O and Memory, bypassing the CPU entirely.
-   * *Pros*: Extremely fast bulk transfers.
+৩. **ডাইরেক্ট মেমরি অ্যাক্সেস (DMA)**:
+   বড় ডেটা ট্রান্সফারের জন্য (যেমন, ডিস্ক থেকে একটি ফাইল পড়া), CPU একটি **DMA কন্ট্রোলার**-কে এটি পরিচালনা করতে বলে। DMA সিস্টেম বাসগুলোর নিয়ন্ত্রণ নেয় এবং CPU-কে সম্পূর্ণভাবে বাইপাস করে সরাসরি I/O এবং মেমরির মধ্যে ডেটা ট্রান্সফার করে।
+   * *সুবিধা*: অত্যন্ত দ্রুত বাল্ক ট্রান্সফার।
         `,
         quiz: [
           {
-            question: "Which I/O technique allows an external device to transfer data directly to memory without the CPU's involvement?",
-            options: ["Polling", "Programmed I/O", "Interrupt-driven I/O", "Direct Memory Access (DMA)"],
+            question: "কোন I/O টেকনিক একটি বাহ্যিক ডিভাইসকে CPU-এর সম্পৃক্ততা ছাড়াই সরাসরি মেমরিতে ডেটা ট্রান্সফার করতে দেয়?",
+            options: ["পোলিং", "প্রোগ্রামড I/O", "ইন্টারাপ্ট-ড্রিভেন I/O", "ডাইরেক্ট মেমরি অ্যাক্সেস (DMA)"],
             correctIndex: 3
           }
         ]
       },
       {
         id: 'arch-8085-8086',
-        title: '8085 & 8086 Architecture',
+        title: '৮০৮৫ এবং ৮০৮৬ আর্কিটেকচার',
         content: `
-# Internal Architecture: 8085 vs 8086
+# ইন্টারনাল আর্কিটেকচার: ৮০৮৫ বনাম ৮০৮৬
 
-## Intel 8085 Architecture (8-bit)
-The 8085 is an 8-bit microprocessor.
-* **ALU**: 8-bit.
-* **Registers**: Accumulator (A), B, C, D, E, H, L (all 8-bit). Can form 16-bit pairs (BC, DE, HL).
-* **Buses**: 8-bit data bus, 16-bit address bus (can address $2^{16}$ = 64 KB of memory).
+## ইন্টেল ৮০৮৫ আর্কিটেকচার (৮-বিট)
+৮০৮৫ একটি ৮-বিট মাইক্রোপ্রসেসর।
+* **ALU**: ৮-বিট।
+* **রেজিস্টার**: অ্যাকুমুলেটর (A), B, C, D, E, H, L (সবগুলো ৮-বিট)। ১৬-বিট জোড়া তৈরি করতে পারে (BC, DE, HL)।
+* **বাস**: ৮-বিট ডেটা বাস, ১৬-বিট অ্যাড্রেস বাস ($2^{16}$ = ৬৪ KB মেমরি অ্যাড্রেস করতে পারে)।
 
-## Intel 8086 Architecture (16-bit)
-The 8086 is a massive leap forward. It is divided into two independent units working in parallel (Pipelining).
+## ইন্টেল ৮০৮৬ আর্কিটেকচার (১৬-বিট)
+৮০৮৬ একটি বিশাল অগ্রগতি। এটি সমান্তরালভাবে কাজ করা দুটি স্বাধীন ইউনিটে বিভক্ত (পাইপলাইনিং)।
 
-### 1. Bus Interface Unit (BIU)
-Handles all communication with external memory and I/O.
-* Fetches instructions and stores them in a **6-byte Instruction Queue**.
-* Calculates the 20-bit physical address using Segment Registers (CS, DS, SS, ES) and an offset.
-* **Physical Address = (Segment Register * 10H) + Offset**
+### ১. বাস ইন্টারফেস ইউনিট (BIU)
+বাহ্যিক মেমরি এবং I/O এর সাথে সমস্ত যোগাযোগ পরিচালনা করে।
+* ইনস্ট্রাকশন ফেচ করে এবং সেগুলোকে একটি **৬-বাইট ইনস্ট্রাকশন কিউ (Queue)**-তে সংরক্ষণ করে।
+* সেগমেন্ট রেজিস্টার (CS, DS, SS, ES) এবং একটি অফসেট ব্যবহার করে ২০-বিট ফিজিক্যাল অ্যাড্রেস গণনা করে।
+* **ফিজিক্যাল অ্যাড্রেস = (সেগমেন্ট রেজিস্টার * 10H) + অফসেট**
 
-### 2. Execution Unit (EU)
-Executes instructions.
-* Pulls instructions from the BIU's queue.
-* Contains the ALU, Flags register, and General Purpose Registers (AX, BX, CX, DX, SP, BP, SI, DI).
+### ২. এক্সিকিউশন ইউনিট (EU)
+ইনস্ট্রাকশন এক্সিকিউট করে।
+* BIU এর কিউ থেকে ইনস্ট্রাকশন টানে।
+* ALU, ফ্ল্যাগস রেজিস্টার এবং জেনারেল পারপাস রেজিস্টার (AX, BX, CX, DX, SP, BP, SI, DI) ধারণ করে।
 
 \`\`\`text
 +-------------------------+      +-------------------------+
-|  Execution Unit (EU)    |      | Bus Interface Unit (BIU)|
+|  এক্সিকিউশন ইউনিট (EU)  |      | বাস ইন্টারফেস ইউনিট (BIU)|
 |                         |      |                         |
-|  [ALU]   [Registers]    |<---->|  [Segment Registers]    |
-|                         |      |  [Instruction Queue]    |
+|  [ALU]   [রেজিস্টার]    |<---->|  [সেগমেন্ট রেজিস্টার]   |
+|                         |      |  [ইনস্ট্রাকশন কিউ]       |
 +-------------------------+      +-------------------------+
                                               |
-                                     System Bus (Memory/IO)
+                                     সিস্টেম বাস (মেমরি/IO)
 \`\`\`
 
-## Addressing Modes
-How the CPU finds the data it needs to process.
-* **Immediate**: Data is in the instruction itself (\`MOV AX, 1234H\`).
-* **Register**: Data is in a register (\`MOV AX, BX\`).
-* **Direct**: Memory address is given directly (\`MOV AX, [1234H]\`).
-* **Indirect**: A register holds the memory address (\`MOV AX, [BX]\`).
+## অ্যাড্রেসিং মোড
+CPU কীভাবে প্রক্রিয়া করার জন্য প্রয়োজনীয় ডেটা খুঁজে পায়।
+* **ইমিডিয়েট**: ডেটা ইনস্ট্রাকশনের মধ্যেই থাকে (\`MOV AX, 1234H\`)।
+* **রেজিস্টার**: ডেটা একটি রেজিস্টারে থাকে (\`MOV AX, BX\`)।
+* **ডাইরেক্ট**: মেমরি অ্যাড্রেস সরাসরি দেওয়া থাকে (\`MOV AX, [1234H]\`)।
+* **ইনডাইরেক্ট**: একটি রেজিস্টার মেমরি অ্যাড্রেস ধারণ করে (\`MOV AX, [BX]\`)।
 
-## Instruction Format
-Instructions consist of an **Opcode** (what to do) and **Operands** (what to do it on). 8086 instructions vary from 1 to 6 bytes.
+## ইনস্ট্রাকশন ফরম্যাট
+ইনস্ট্রাকশনগুলো একটি **Opcode** (কী করতে হবে) এবং **Operands** (কিসের উপর করতে হবে) নিয়ে গঠিত। ৮০৮৬ ইনস্ট্রাকশনগুলো ১ থেকে ৬ বাইট পর্যন্ত পরিবর্তিত হয়।
         `,
         quiz: [
           {
-            question: "In the 8086 microprocessor, which unit is responsible for fetching instructions and calculating physical addresses?",
-            options: ["Execution Unit (EU)", "Arithmetic Logic Unit (ALU)", "Bus Interface Unit (BIU)", "Instruction Queue"],
+            question: "৮০৮৬ মাইক্রোপ্রসেসরে, কোন ইউনিট ইনস্ট্রাকশন ফেচ করতে এবং ফিজিক্যাল অ্যাড্রেস গণনা করতে দায়ী?",
+            options: ["এক্সিকিউশন ইউনিট (EU)", "অ্যারিথমেটিক লজিক ইউনিট (ALU)", "বাস ইন্টারফেস ইউনিট (BIU)", "ইনস্ট্রাকশন কিউ"],
             correctIndex: 2
           }
         ]
       },
       {
         id: 'hardware-interfacing',
-        title: 'Hardware & Interfacing',
+        title: 'হার্ডওয়্যার এবং ইন্টারফেসিং',
         content: `
-# Hardware Configurations of 8086
+# ৮০৮৬ এর হার্ডওয়্যার কনফিগারেশন
 
-## Pin Configuration
-The 8086 is a 40-pin Dual Inline Package (DIP) IC.
-* **AD0-AD15**: Multiplexed Address and Data bus. During the first clock cycle (T1), they carry the address. During T2-T4, they carry data. This saves pins.
-* **A16/S3 - A19/S6**: Multiplexed upper address bits and status signals.
-* **ALE (Address Latch Enable)**: A signal used to demultiplex (separate) the address from the data bus using external latches.
+## পিন কনফিগারেশন
+৮০৮৬ হলো একটি ৪০-পিন ডুয়াল ইনলাইন প্যাকেজ (DIP) IC।
+* **AD0-AD15**: মাল্টিপ্লেক্সড অ্যাড্রেস এবং ডেটা বাস। প্রথম ক্লক সাইকেলে (T1), এগুলো অ্যাড্রেস বহন করে। T2-T4 এর সময়, এগুলো ডেটা বহন করে। এটি পিন বাঁচায়।
+* **A16/S3 - A19/S6**: মাল্টিপ্লেক্সড আপার অ্যাড্রেস বিট এবং স্ট্যাটাস সিগন্যাল।
+* **ALE (Address Latch Enable)**: এক্সটার্নাল ল্যাচ ব্যবহার করে ডেটা বাস থেকে অ্যাড্রেসকে ডিমাল্টিপ্লেক্স (আলাদা) করতে ব্যবহৃত একটি সিগন্যাল।
 
-## Maximum / Minimum Mode
-The 8086 can operate in two modes, determined by the **MN/MX'** pin (Pin 33).
-1. **Minimum Mode (MN/MX' = 5V)**: 
-   The 8086 acts as a single processor. It generates all control signals (RD, WR, INTA) directly.
-2. **Maximum Mode (MN/MX' = 0V)**: 
-   Used in multiprocessor systems (e.g., paired with an 8087 Math Coprocessor). The 8086 delegates control signal generation to an external **8288 Bus Controller**.
+## ম্যাক্সিমাম / মিনিমাম মোড
+৮০৮৬ দুটি মোডে কাজ করতে পারে, যা **MN/MX'** পিন (পিন ৩৩) দ্বারা নির্ধারিত হয়।
+১. **মিনিমাম মোড (MN/MX' = 5V)**: 
+   ৮০৮৬ একটি একক প্রসেসর হিসেবে কাজ করে। এটি সমস্ত কন্ট্রোল সিগন্যাল (RD, WR, INTA) সরাসরি তৈরি করে।
+২. **ম্যাক্সিমাম মোড (MN/MX' = 0V)**: 
+   মাল্টিপ্রসেসর সিস্টেমে ব্যবহৃত হয় (যেমন, একটি 8087 ম্যাথ কো-প্রসেসরের সাথে যুক্ত)। ৮০৮৬ একটি বাহ্যিক **8288 বাস কন্ট্রোলার**-এর কাছে কন্ট্রোল সিগন্যাল তৈরির দায়িত্ব দেয়।
 
-## Read/Write Cycle
-A standard 8086 bus cycle takes **4 Clock Periods (T-states)**:
-* **T1**: CPU places the address on the bus and pulses ALE.
-* **T2**: CPU changes bus direction for read, or puts data on bus for write.
-* **T3**: Data transfer occurs. (Wait states can be inserted here if memory is slow).
-* **T4**: Cycle completes, buses are deactivated.
+## রিড/রাইট সাইকেল
+একটি স্ট্যান্ডার্ড ৮০৮৬ বাস সাইকেল **৪টি ক্লক পিরিয়ড (T-states)** নেয়:
+* **T1**: CPU বাসে অ্যাড্রেস রাখে এবং ALE পালস করে।
+* **T2**: CPU রিড করার জন্য বাসের দিক পরিবর্তন করে, অথবা রাইট করার জন্য বাসে ডেটা রাখে।
+* **T3**: ডেটা ট্রান্সফার ঘটে। (মেমরি ধীর হলে এখানে ওয়েট স্টেট ঢোকানো যেতে পারে)।
+* **T4**: সাইকেল সম্পূর্ণ হয়, বাসগুলো নিষ্ক্রিয় হয়।
 
-## Memory Banking
-The 8086 has a 16-bit data bus, but memory is organized in 8-bit bytes. To access 16 bits at once, the 1MB memory is split into two 512KB banks:
-* **Even Bank (Lower)**: Connected to D0-D7. Selected by A0 = 0.
-* **Odd Bank (Upper)**: Connected to D8-D15. Selected by BHE' (Bus High Enable) = 0.
-This allows the CPU to read an 8-bit byte or a 16-bit word in a single cycle.
+## মেমরি ব্যাংকিং
+৮০৮৬-এ একটি ১৬-বিট ডেটা বাস রয়েছে, তবে মেমরি ৮-বিট বাইটে সাজানো থাকে। একবারে ১৬ বিট অ্যাক্সেস করতে, ১MB মেমরিকে দুটি ৫১২KB ব্যাংকে ভাগ করা হয়:
+* **ইভেন ব্যাংক (লোয়ার)**: D0-D7 এর সাথে সংযুক্ত। A0 = 0 দ্বারা নির্বাচিত।
+* **অড ব্যাংক (আপার)**: D8-D15 এর সাথে সংযুক্ত। BHE' (Bus High Enable) = 0 দ্বারা নির্বাচিত।
+এটি CPU-কে একটি একক সাইকেলে একটি ৮-বিট বাইট বা একটি ১৬-বিট ওয়ার্ড পড়তে দেয়।
         `,
         quiz: [
           {
-            question: "Which pin on the 8086 is used to demultiplex the Address/Data bus?",
+            question: "অ্যাড্রেস/ডেটা বাসকে ডিমাল্টিপ্লেক্স করতে ৮০৮৬-এর কোন পিনটি ব্যবহৃত হয়?",
             options: ["BHE'", "ALE", "MN/MX'", "NMI"],
             correctIndex: 1
           }
@@ -225,42 +225,42 @@ This allows the CPU to read an 8-bit byte or a 16-bit word in a single cycle.
       },
       {
         id: 'interrupts-dma',
-        title: 'Interrupts & DMA',
+        title: 'ইন্টারাপ্টস এবং ডিএমএ',
         content: `
-# Interrupts and DMA
+# ইন্টারাপ্টস এবং ডিএমএ
 
-## Interrupts and Handling
-An interrupt is a signal that temporarily suspends the main program to execute a specific routine (Interrupt Service Routine - ISR).
+## ইন্টারাপ্টস এবং হ্যান্ডলিং
+একটি ইন্টারাপ্ট হলো একটি সিগন্যাল যা একটি নির্দিষ্ট রুটিন (Interrupt Service Routine - ISR) এক্সিকিউট করার জন্য মূল প্রোগ্রামটিকে সাময়িকভাবে স্থগিত করে।
 
-### Types of Interrupts in 8086:
-1. **Hardware Interrupts**: Triggered by external pins.
-   * **NMI (Non-Maskable Interrupt)**: Cannot be ignored. Used for critical errors (e.g., power failure).
-   * **INTR (Interrupt Request)**: Can be masked (ignored) by clearing the Interrupt Flag (IF).
-2. **Software Interrupts**: Triggered by instructions (\`INT n\`, where n is 0-255).
+### ৮০৮৬-এ ইন্টারাপ্টের প্রকারভেদ:
+১. **হার্ডওয়্যার ইন্টারাপ্টস**: এক্সটার্নাল পিন দ্বারা ট্রিগার হয়।
+   * **NMI (Non-Maskable Interrupt)**: উপেক্ষা করা যায় না। ক্রিটিক্যাল এরর (যেমন, পাওয়ার ফেইলিউর) এর জন্য ব্যবহৃত হয়।
+   * **INTR (Interrupt Request)**: ইন্টারাপ্ট ফ্ল্যাগ (IF) ক্লিয়ার করে মাস্ক (উপেক্ষা) করা যায়।
+২. **সফটওয়্যার ইন্টারাপ্টস**: ইনস্ট্রাকশন দ্বারা ট্রিগার হয় (\`INT n\`, যেখানে n হলো ০-২৫৫)।
 
-### Interrupt Handling Process:
-1. CPU finishes current instruction.
-2. Pushes Flags, CS, and IP registers to the Stack.
-3. Clears IF and TF flags.
-4. Fetches the ISR address from the **Interrupt Vector Table (IVT)** (located at memory 00000H).
-5. Executes ISR.
-6. \`IRET\` instruction pops IP, CS, and Flags back, resuming the main program.
+### ইন্টারাপ্ট হ্যান্ডলিং প্রক্রিয়া:
+১. CPU বর্তমান ইনস্ট্রাকশন শেষ করে।
+২. ফ্ল্যাগস, CS, এবং IP রেজিস্টারগুলোকে স্ট্যাকে পুশ করে।
+৩. IF এবং TF ফ্ল্যাগ ক্লিয়ার করে।
+৪. **ইন্টারাপ্ট ভেক্টর টেবিল (IVT)** (মেমরি 00000H এ অবস্থিত) থেকে ISR অ্যাড্রেস ফেচ করে।
+৫. ISR এক্সিকিউট করে।
+৬. \`IRET\` ইনস্ট্রাকশন IP, CS, এবং ফ্ল্যাগস-কে আবার পপ করে, মূল প্রোগ্রামটি পুনরায় শুরু করে।
 
-## Interrupt Controller (8259A)
-When multiple devices need to interrupt the CPU, an **8259A Programmable Interrupt Controller (PIC)** is used. 
-It accepts up to 8 interrupt requests, resolves priority, and sends a single INTR signal to the CPU, along with the vector number of the highest priority device.
+## ইন্টারাপ্ট কন্ট্রোলার (8259A)
+যখন একাধিক ডিভাইসের CPU-কে ইন্টারাপ্ট করার প্রয়োজন হয়, তখন একটি **8259A প্রোগ্রামেবল ইন্টারাপ্ট কন্ট্রোলার (PIC)** ব্যবহৃত হয়। 
+এটি ৮টি পর্যন্ত ইন্টারাপ্ট রিকোয়েস্ট গ্রহণ করে, প্রায়োরিটি সমাধান করে এবং সর্বোচ্চ প্রায়োরিটি ডিভাইসের ভেক্টর নম্বর সহ CPU-তে একটি একক INTR সিগন্যাল পাঠায়।
 
-## DMA (Direct Memory Access)
-When transferring huge blocks of data (e.g., disk to RAM), routing it through the CPU is too slow.
-1. The **8237 DMA Controller** sends a **HOLD** signal to the CPU.
-2. The CPU finishes its current bus cycle and responds with **HLDA** (Hold Acknowledge), floating its buses (disconnecting from them).
-3. The DMA Controller takes mastership of the buses and transfers data directly between I/O and Memory.
-4. Once done, DMA drops HOLD, and CPU resumes control.
+## DMA (ডাইরেক্ট মেমরি অ্যাক্সেস)
+যখন বিশাল ডেটা ব্লক ট্রান্সফার করা হয় (যেমন, ডিস্ক থেকে RAM), তখন এটি CPU এর মাধ্যমে রাউট করা খুব ধীর হয়।
+১. **8237 DMA কন্ট্রোলার** CPU-তে একটি **HOLD** সিগন্যাল পাঠায়।
+২. CPU তার বর্তমান বাস সাইকেল শেষ করে এবং **HLDA** (Hold Acknowledge) দিয়ে সাড়া দেয়, তার বাসগুলোকে ফ্লোট করে (সেগুলো থেকে সংযোগ বিচ্ছিন্ন করে)।
+৩. DMA কন্ট্রোলার বাসগুলোর মাস্টারশিপ নেয় এবং সরাসরি I/O এবং মেমরির মধ্যে ডেটা ট্রান্সফার করে।
+৪. শেষ হয়ে গেলে, DMA HOLD ড্রপ করে এবং CPU আবার নিয়ন্ত্রণ নেয়।
         `,
         quiz: [
           {
-            question: "Which hardware interrupt on the 8086 cannot be ignored or masked by software?",
-            options: ["INTR", "INT 21H", "NMI", "Software Interrupt"],
+            question: "৮০৮৬-এ কোন হার্ডওয়্যার ইন্টারাপ্টটি সফটওয়্যার দ্বারা উপেক্ষা বা মাস্ক করা যায় না?",
+            options: ["INTR", "INT 21H", "NMI", "সফটওয়্যার ইন্টারাপ্ট"],
             correctIndex: 2
           }
         ]
@@ -269,74 +269,74 @@ When transferring huge blocks of data (e.g., disk to RAM), routing it through th
   },
   {
     id: 'advanced',
-    title: 'Advanced Microprocessors',
-    description: 'Internal architecture, memory management, and overview of advanced processors.',
+    title: 'অ্যাডভান্সড মাইক্রোপ্রসেসর',
+    description: 'ইন্টারনাল আর্কিটেকচার, মেমরি ম্যানেজমেন্ট এবং অ্যাডভান্সড প্রসেসরের ওভারভিউ।',
     lessons: [
       {
         id: 'x86-evolution',
-        title: 'Intel x86 Evolution',
+        title: 'ইন্টেল x86 বিবর্তন',
         content: `
-# Evolution of Advanced Microprocessors
+# অ্যাডভান্সড মাইক্রোপ্রসেসরের বিবর্তন
 
-The x86 architecture evolved rapidly to meet the demands of modern operating systems like Windows and Linux.
+উইন্ডোজ এবং লিনাক্সের মতো আধুনিক অপারেটিং সিস্টেমগুলোর চাহিদা মেটাতে x86 আর্কিটেকচার খুব দ্রুত বিবর্তিত হয়েছে।
 
-## Intel 80186 & 80286
-* **80186 (16-bit)**: Primarily an embedded processor. It integrated many peripheral chips (DMA, timers, interrupt controller) directly onto the CPU die to reduce motherboard cost.
-* **80286 (16-bit)**: A massive milestone. It introduced **Protected Mode**. It could address 16MB of physical memory and 1GB of virtual memory. However, switching back to Real Mode (for DOS compatibility) required a hardware reset, which was clunky.
+## ইন্টেল ৮০১৮৬ এবং ৮০২৮৬
+* **৮০১৮৬ (১৬-বিট)**: মূলত একটি এমবেডেড প্রসেসর। এটি মাদারবোর্ডের খরচ কমানোর জন্য অনেক পেরিফেরাল চিপ (DMA, টাইমার, ইন্টারাপ্ট কন্ট্রোলার) সরাসরি CPU ডাই-তে একীভূত করেছে।
+* **৮০২৮৬ (১৬-বিট)**: একটি বিশাল মাইলফলক। এটি **প্রোটেক্টেড মোড** চালু করেছে। এটি ১৬MB ফিজিক্যাল মেমরি এবং ১GB ভার্চুয়াল মেমরি অ্যাড্রেস করতে পারতো। তবে, রিয়েল মোডে (DOS সামঞ্জস্যের জন্য) ফিরে যাওয়ার জন্য একটি হার্ডওয়্যার রিসেটের প্রয়োজন ছিল, যা বেশ ঝামেলার ছিল।
 
-## Intel 80386 & 80486
-* **80386 (32-bit)**: The first fully 32-bit x86 processor. 
-  * 32-bit registers (EAX, EBX, etc.).
-  * 32-bit address bus (can address **4GB** of physical memory).
-  * Introduced **Paging**, the foundation of modern virtual memory.
-* **80486 (32-bit)**: Highly integrated. 
-  * Brought the Math Coprocessor (FPU) on-chip.
-  * Added an **L1 Cache** (8KB) directly on the CPU die.
-  * Heavily pipelined, executing many instructions in just 1 clock cycle.
+## ইন্টেল ৮০৩৮৬ এবং ৮০৪৮৬
+* **৮০৩৮৬ (৩২-বিট)**: প্রথম সম্পূর্ণ ৩২-বিট x86 প্রসেসর। 
+  * ৩২-বিট রেজিস্টার (EAX, EBX, ইত্যাদি)।
+  * ৩২-বিট অ্যাড্রেস বাস (**৪GB** ফিজিক্যাল মেমরি অ্যাড্রেস করতে পারে)।
+  * **পেজিং** চালু করেছে, যা আধুনিক ভার্চুয়াল মেমরির ভিত্তি।
+* **৮০৪৮৬ (৩২-বিট)**: উচ্চমাত্রায় একীভূত। 
+  * ম্যাথ কো-প্রসেসর (FPU) অন-চিপ নিয়ে এসেছে।
+  * সরাসরি CPU ডাই-তে একটি **L1 ক্যাশ** (8KB) যুক্ত করেছে।
+  * ব্যাপকভাবে পাইপলাইন করা, মাত্র ১ ক্লক সাইকেলে অনেক ইনস্ট্রাকশন এক্সিকিউট করে।
 
-## Pentium Microprocessors
-The Pentium (80586) introduced **Superscalar Architecture**.
-* It had two parallel integer execution pipelines (U and V pipes), allowing it to execute **two instructions per clock cycle**.
-* Separated the L1 cache into a Data Cache and an Instruction Cache (Harvard architecture internally).
-* Featured a 64-bit external data bus for faster memory access.
+## পেন্টিয়াম মাইক্রোপ্রসেসর
+পেন্টিয়াম (৮০৫৮৬) **সুপারস্কেলার আর্কিটেকচার** চালু করেছে।
+* এর দুটি সমান্তরাল ইন্টিজার এক্সিকিউশন পাইপলাইন (U এবং V পাইপ) ছিল, যা এটিকে **প্রতি ক্লক সাইকেলে দুটি ইনস্ট্রাকশন** এক্সিকিউট করতে দেয়।
+* L1 ক্যাশকে একটি ডেটা ক্যাশ এবং একটি ইনস্ট্রাকশন ক্যাশে (অভ্যন্তরীণভাবে হার্ভার্ড আর্কিটেকচার) আলাদা করেছে।
+* দ্রুত মেমরি অ্যাক্সেসের জন্য একটি ৬৪-বিট এক্সটার্নাল ডেটা বাস বৈশিষ্ট্যযুক্ত।
         `,
         quiz: [
           {
-            question: "Which Intel processor was the first to feature a fully 32-bit architecture and introduce Paging?",
-            options: ["80286", "80386", "80486", "Pentium"],
+            question: "কোন ইন্টেল প্রসেসরটি প্রথম সম্পূর্ণ ৩২-বিট আর্কিটেকচার বৈশিষ্ট্যযুক্ত এবং পেজিং চালু করেছিল?",
+            options: ["৮০২৮৬", "৮০৩৮৬", "৮০৪৮৬", "পেন্টিয়াম"],
             correctIndex: 1
           }
         ]
       },
       {
         id: 'memory-protection',
-        title: 'Memory Management & Protection',
+        title: 'মেমরি ম্যানেজমেন্ট এবং প্রোটেকশন',
         content: `
-# Advanced Memory Management
+# অ্যাডভান্সড মেমরি ম্যানেজমেন্ট
 
-Starting with the 80286 and perfected in the 80386, memory management shifted from simple segmentation to secure, protected environments.
+৮০২৮৬ থেকে শুরু করে এবং ৮০৩৮৬-এ নিখুঁত হওয়া, মেমরি ম্যানেজমেন্ট সাধারণ সেগমেন্টেশন থেকে নিরাপদ, সুরক্ষিত পরিবেশে স্থানান্তরিত হয়েছে।
 
-## Protected Mode
-In Real Mode (8086 style), any program can access any memory address, meaning a buggy app can crash the OS.
-In **Protected Mode**, memory access is strictly controlled.
-* **Descriptor Tables**: Segment registers no longer hold base addresses. They hold "Selectors" that point to a Descriptor in a Global Descriptor Table (GDT).
-* **Descriptors**: Contain the base address, segment limit (size), and **Privilege Level**.
+## প্রোটেক্টেড মোড
+রিয়েল মোডে (৮০৮৬ স্টাইল), যেকোনো প্রোগ্রাম যেকোনো মেমরি অ্যাড্রেস অ্যাক্সেস করতে পারে, যার মানে একটি বাগি অ্যাপ OS ক্র্যাশ করতে পারে।
+**প্রোটেক্টেড মোডে**, মেমরি অ্যাক্সেস কঠোরভাবে নিয়ন্ত্রিত হয়।
+* **ডেসক্রিপ্টর টেবিল**: সেগমেন্ট রেজিস্টারগুলো আর বেস অ্যাড্রেস ধারণ করে না। তারা "সিলেক্টর" ধারণ করে যা একটি গ্লোবাল ডেসক্রিপ্টর টেবিলে (GDT) একটি ডেসক্রিপ্টরকে নির্দেশ করে।
+* **ডেসক্রিপ্টর**: বেস অ্যাড্রেস, সেগমেন্ট লিমিট (সাইজ) এবং **প্রিভিলেজ লেভেল** ধারণ করে।
 
-### Privilege Rings
-Protection is enforced using 4 rings (0 to 3).
-* **Ring 0**: Operating System Kernel (Highest privilege). Can execute any instruction and access any hardware.
-* **Ring 3**: User Applications (Lowest privilege). Cannot access hardware directly or modify OS memory.
-If a Ring 3 app tries to access Ring 0 memory, the CPU throws a General Protection Fault (crashing the app, but saving the OS).
+### প্রিভিলেজ রিংস
+৪টি রিং (০ থেকে ৩) ব্যবহার করে সুরক্ষা প্রয়োগ করা হয়।
+* **রিং ০**: অপারেটিং সিস্টেম কার্নেল (সর্বোচ্চ প্রিভিলেজ)। যেকোনো ইনস্ট্রাকশন এক্সিকিউট করতে পারে এবং যেকোনো হার্ডওয়্যার অ্যাক্সেস করতে পারে।
+* **রিং ৩**: ইউজার অ্যাপ্লিকেশন (সর্বনিম্ন প্রিভিলেজ)। সরাসরি হার্ডওয়্যার অ্যাক্সেস করতে পারে না বা OS মেমরি পরিবর্তন করতে পারে না।
+যদি একটি রিং ৩ অ্যাপ রিং ০ মেমরি অ্যাক্সেস করার চেষ্টা করে, CPU একটি জেনারেল প্রোটেকশন ফল্ট (General Protection Fault) থ্রো করে (অ্যাপটি ক্র্যাশ করে, কিন্তু OS কে বাঁচায়)।
 
 \`\`\`text
   +-----------------------+
-  | Ring 3: Applications  |
+  | রিং ৩: অ্যাপ্লিকেশন   |
   |  +-----------------+  |
-  |  | Ring 2: Drivers |  |
+  |  | রিং ২: ড্রাইভার |  |
   |  |  +-----------+  |  |
-  |  |  | Ring 1    |  |  |
+  |  |  | রিং ১     |  |  |
   |  |  |  +-----+  |  |  |
-  |  |  |  |Ring0|  |  |  |
+  |  |  |  |রিং০ |  |  |  |
   |  |  |  | OS  |  |  |  |
   |  |  |  +-----+  |  |  |
   |  |  +-----------+  |  |
@@ -344,50 +344,50 @@ If a Ring 3 app tries to access Ring 0 memory, the CPU throws a General Protecti
   +-----------------------+
 \`\`\`
 
-## Paging
-Introduced in the 80386. Paging divides physical memory and virtual memory into fixed-size blocks called **Pages** (usually 4KB).
-* The OS maintains a **Page Table** that maps Virtual Addresses (what the program sees) to Physical Addresses (actual RAM chips).
-* **Virtual Memory**: If RAM is full, the OS moves pages to the hard drive (Swap/Pagefile). When the program needs them, a "Page Fault" occurs, and the OS brings them back to RAM.
+## পেজিং
+৮০৩৮৬-এ চালু হয়েছে। পেজিং ফিজিক্যাল মেমরি এবং ভার্চুয়াল মেমরিকে **পেজ** (সাধারণত 4KB) নামক নির্দিষ্ট আকারের ব্লকে ভাগ করে।
+* OS একটি **পেজ টেবিল** বজায় রাখে যা ভার্চুয়াল অ্যাড্রেসগুলোকে (প্রোগ্রাম যা দেখে) ফিজিক্যাল অ্যাড্রেসগুলোতে (আসল RAM চিপ) ম্যাপ করে।
+* **ভার্চুয়াল মেমরি**: যদি RAM পূর্ণ থাকে, OS পেজগুলোকে হার্ড ড্রাইভে (Swap/Pagefile) সরিয়ে নেয়। যখন প্রোগ্রামের সেগুলোর প্রয়োজন হয়, একটি "পেজ ফল্ট" ঘটে এবং OS সেগুলোকে আবার RAM-এ নিয়ে আসে।
         `,
         quiz: [
           {
-            question: "In the x86 protection ring model, which ring is typically reserved for user applications?",
-            options: ["Ring 0", "Ring 1", "Ring 2", "Ring 3"],
+            question: "x86 প্রোটেকশন রিং মডেলে, কোন রিংটি সাধারণত ইউজার অ্যাপ্লিকেশনের জন্য সংরক্ষিত থাকে?",
+            options: ["রিং ০", "রিং ১", "রিং ২", "রিং ৩"],
             correctIndex: 3
           }
         ]
       },
       {
         id: 'risc-alpha',
-        title: 'RISC, Coprocessors & Alpha',
+        title: 'রিস্ক (RISC), কো-প্রসেসর এবং আলফা',
         content: `
-# Alternative Architectures
+# বিকল্প আর্কিটেকচার
 
-While Intel x86 dominated the PC market using CISC (Complex Instruction Set Computer), other architectures took different approaches.
+যদিও ইন্টেল x86 CISC (Complex Instruction Set Computer) ব্যবহার করে পিসি বাজারে আধিপত্য বিস্তার করেছিল, অন্যান্য আর্কিটেকচারগুলো ভিন্ন পদ্ধতি গ্রহণ করেছিল।
 
-## RISC Processors
-**Reduced Instruction Set Computer (RISC)** philosophy argues that CPUs should have a small, simple set of instructions that execute extremely fast (usually in one clock cycle).
-* **Characteristics**:
-  1. **Load/Store Architecture**: Only \`LOAD\` and \`STORE\` instructions can access memory. All math/logic operations happen strictly between registers.
-  2. **Many Registers**: To avoid memory access, RISC CPUs have dozens or hundreds of general-purpose registers.
-  3. **Fixed-Length Instructions**: Makes decoding fast and pipelining highly efficient.
-* Examples: ARM (used in almost all smartphones), MIPS, PowerPC.
+## RISC প্রসেসর
+**Reduced Instruction Set Computer (RISC)** দর্শন যুক্তি দেয় যে CPU-গুলোতে একটি ছোট, সাধারণ ইনস্ট্রাকশন সেট থাকা উচিত যা অত্যন্ত দ্রুত এক্সিকিউট হয় (সাধারণত একটি ক্লক সাইকেলে)।
+* **বৈশিষ্ট্য**:
+  ১. **লোড/স্টোর আর্কিটেকচার**: শুধুমাত্র \`LOAD\` এবং \`STORE\` ইনস্ট্রাকশন মেমরি অ্যাক্সেস করতে পারে। সমস্ত গাণিতিক/লজিক্যাল অপারেশন কঠোরভাবে রেজিস্টারগুলোর মধ্যে ঘটে।
+  ২. **অনেক রেজিস্টার**: মেমরি অ্যাক্সেস এড়াতে, RISC CPU-গুলোতে কয়েক ডজন বা শত শত জেনারেল পারপাস রেজিস্টার থাকে।
+  ৩. **নির্দিষ্ট-দৈর্ঘ্যের ইনস্ট্রাকশন**: ডিকোডিং দ্রুত করে এবং পাইপলাইনিং অত্যন্ত দক্ষ করে তোলে।
+* উদাহরণ: ARM (প্রায় সব স্মার্টফোনে ব্যবহৃত হয়), MIPS, PowerPC।
 
-## Coprocessors
-A coprocessor is a specialized chip designed to assist the main CPU in specific, mathematically intensive tasks.
-* **Math Coprocessor (FPU)**: The Intel 8087 was the coprocessor for the 8086. It handled floating-point arithmetic, trigonometry, and logarithms hundreds of times faster than the 8086 could do via software emulation.
-* Modern CPUs integrate the coprocessor directly onto the main die.
+## কো-প্রসেসর
+একটি কো-প্রসেসর হলো একটি বিশেষ চিপ যা নির্দিষ্ট, গাণিতিকভাবে নিবিড় কাজগুলোতে প্রধান CPU-কে সহায়তা করার জন্য ডিজাইন করা হয়েছে।
+* **ম্যাথ কো-প্রসেসর (FPU)**: ইন্টেল 8087 ছিল ৮০৮৬ এর জন্য কো-প্রসেসর। এটি ফ্লোটিং-পয়েন্ট পাটিগণিত, ত্রিকোণমিতি এবং লগারিদম ৮০৮৬ এর সফটওয়্যার ইমুলেশনের চেয়ে শতগুণ দ্রুত পরিচালনা করতো।
+* আধুনিক CPU-গুলো কো-প্রসেসরকে সরাসরি প্রধান ডাই-তে একীভূত করে।
 
-## Alpha Processor
-Developed by Digital Equipment Corporation (DEC) in 1992, the **DEC Alpha** was a revolutionary 64-bit RISC processor.
-* It was designed purely for maximum performance and high clock speeds.
-* It lacked some complex instructions (like integer divide), forcing the compiler to handle them, keeping the silicon simple and fast.
-* For a time in the 1990s, Alpha processors were the fastest chips in the world, heavily used in supercomputers and high-end workstations.
+## আলফা প্রসেসর
+১৯৯২ সালে ডিজিটাল ইকুইপমেন্ট কর্পোরেশন (DEC) দ্বারা তৈরি, **DEC Alpha** ছিল একটি বিপ্লবী ৬৪-বিট RISC প্রসেসর।
+* এটি শুধুমাত্র সর্বোচ্চ পারফরম্যান্স এবং উচ্চ ক্লক স্পিডের জন্য ডিজাইন করা হয়েছিল।
+* এতে কিছু জটিল ইনস্ট্রাকশনের (যেমন ইন্টিজার ডিভাইড) অভাব ছিল, যা কম্পাইলারকে সেগুলো পরিচালনা করতে বাধ্য করেছিল, সিলিকনকে সহজ এবং দ্রুত রেখেছিল।
+* ১৯৯০-এর দশকে কিছু সময়ের জন্য, আলফা প্রসেসরগুলো ছিল বিশ্বের দ্রুততম চিপ, যা সুপারকম্পিউটার এবং হাই-এন্ড ওয়ার্কস্টেশনগুলোতে ব্যাপকভাবে ব্যবহৃত হতো।
         `,
         quiz: [
           {
-            question: "Which architecture restricts memory access strictly to LOAD and STORE instructions?",
-            options: ["CISC", "RISC", "Accumulator-based", "x86"],
+            question: "কোন আর্কিটেকচার মেমরি অ্যাক্সেসকে কঠোরভাবে LOAD এবং STORE ইনস্ট্রাকশনে সীমাবদ্ধ করে?",
+            options: ["CISC", "RISC", "অ্যাকুমুলেটর-ভিত্তিক", "x86"],
             correctIndex: 1
           }
         ]
@@ -396,64 +396,64 @@ Developed by Digital Equipment Corporation (DEC) in 1992, the **DEC Alpha** was 
   },
   {
     id: 'assembly',
-    title: 'Assembly Language',
-    description: 'Programming with 8086 instructions, jumps, strings, stacks, and macros.',
+    title: 'অ্যাসেম্বলি ল্যাঙ্গুয়েজ',
+    description: '৮০৮৬ ইনস্ট্রাকশন, জাম্প, স্ট্রিং, স্ট্যাক এবং ম্যাক্রো সহ প্রোগ্রামিং।',
     lessons: [
       {
         id: '8086-instructions-jumps',
-        title: 'Instructions & Jumps',
+        title: 'ইনস্ট্রাকশন এবং জাম্প',
         content: `
-# 8086 Assembly Programming
+# ৮০৮৬ অ্যাসেম্বলি প্রোগ্রামিং
 
-Assembly language is a low-level programming language where instructions correspond directly to machine code.
+অ্যাসেম্বলি ল্যাঙ্গুয়েজ হলো একটি লো-লেভেল প্রোগ্রামিং ভাষা যেখানে ইনস্ট্রাকশনগুলো সরাসরি মেশিন কোডের সাথে মিলে যায়।
 
-## Basic 8086 Instructions
-* **Data Transfer**: \`MOV dest, src\` (Copies data from src to dest).
-* **Arithmetic**: 
+## সাধারণ ৮০৮৬ ইনস্ট্রাকশন
+* **ডেটা ট্রান্সফার**: \`MOV dest, src\` (src থেকে dest-এ ডেটা কপি করে)।
+* **পাটিগণিত**: 
   * \`ADD dest, src\` (dest = dest + src)
   * \`SUB dest, src\` (dest = dest - src)
   * \`INC dest\` (dest = dest + 1)
   * \`DEC dest\` (dest = dest - 1)
-* **Logical**: \`AND\`, \`OR\`, \`XOR\`, \`NOT\`.
+* **লজিক্যাল**: \`AND\`, \`OR\`, \`XOR\`, \`NOT\`।
 
-## Conditional and Unconditional Jumps
-Programs rarely execute in a straight line. Jumps alter the **Instruction Pointer (IP)** to branch to different parts of the code.
+## কন্ডিশনাল এবং আনকন্ডিশনাল জাম্প
+প্রোগ্রামগুলো খুব কমই সরলরেখায় এক্সিকিউট হয়। জাম্পগুলো কোডের বিভিন্ন অংশে শাখা তৈরি করতে **ইনস্ট্রাকশন পয়েন্টার (IP)** পরিবর্তন করে।
 
-### Unconditional Jump
+### আনকন্ডিশনাল জাম্প
 \`JMP label\`
-Always jumps to the specified label, regardless of any conditions.
+যেকোনো শর্ত নির্বিশেষে সর্বদা নির্দিষ্ট লেবেলে জাম্প করে।
 
-### Conditional Jumps
-These jump *only* if specific flags in the **Flags Register** are set or cleared. The flags are usually updated by a previous \`CMP\` (Compare) or arithmetic instruction.
+### কন্ডিশনাল জাম্প
+এগুলো *শুধুমাত্র* তখনই জাম্প করে যদি **ফ্ল্যাগস রেজিস্টার**-এর নির্দিষ্ট ফ্ল্যাগগুলো সেট বা ক্লিয়ার করা থাকে। ফ্ল্যাগগুলো সাধারণত পূর্ববর্তী \`CMP\` (Compare) বা গাণিতিক ইনস্ট্রাকশন দ্বারা আপডেট করা হয়।
 
-* \`CMP op1, op2\`: Subtracts op2 from op1 internally, updates flags, but discards the result.
-* **Jump Instructions**:
-  * \`JE\` / \`JZ\`: Jump if Equal / Zero (Zero Flag = 1)
-  * \`JNE\` / \`JNZ\`: Jump if Not Equal / Not Zero (Zero Flag = 0)
-  * \`JG\` / \`JL\`: Jump if Greater / Less (for signed numbers)
-  * \`JA\` / \`JB\`: Jump if Above / Below (for unsigned numbers)
+* \`CMP op1, op2\`: অভ্যন্তরীণভাবে op1 থেকে op2 বিয়োগ করে, ফ্ল্যাগ আপডেট করে, কিন্তু ফলাফলটি বাতিল করে।
+* **জাম্প ইনস্ট্রাকশন**:
+  * \`JE\` / \`JZ\`: জাম্প ইফ ইকুয়াল / জিরো (Zero Flag = 1)
+  * \`JNE\` / \`JNZ\`: জাম্প ইফ নট ইকুয়াল / নট জিরো (Zero Flag = 0)
+  * \`JG\` / \`JL\`: জাম্প ইফ গ্রেটার / লেস (স্বাক্ষরিত সংখ্যার জন্য)
+  * \`JA\` / \`JB\`: জাম্প ইফ অ্যাবাভ / বিলো (স্বাক্ষরবিহীন সংখ্যার জন্য)
 
-### Example: If-Else Logic
+### উদাহরণ: If-Else লজিক
 \`\`\`assembly
   MOV AL, 5
   CMP AL, 10
-  JG is_greater    ; If AL > 10, jump to is_greater
+  JG is_greater    ; যদি AL > 10 হয়, is_greater-এ জাম্প করুন
   
-  ; --- Else Block ---
-  MOV BL, 0        ; This runs if AL <= 10
-  JMP end_if       ; Skip the 'if' block
+  ; --- Else ব্লক ---
+  MOV BL, 0        ; এটি রান করে যদি AL <= 10 হয়
+  JMP end_if       ; 'if' ব্লক এড়িয়ে যান
 
 is_greater:
-  ; --- If Block ---
-  MOV BL, 1        ; This runs if AL > 10
+  ; --- If ব্লক ---
+  MOV BL, 1        ; এটি রান করে যদি AL > 10 হয়
 
 end_if:
-  ; Program continues...
+  ; প্রোগ্রাম চলতে থাকে...
 \`\`\`
         `,
         quiz: [
           {
-            question: "Which instruction compares two operands by subtracting them internally and updating the flags without modifying the operands?",
+            question: "কোন ইনস্ট্রাকশনটি অভ্যন্তরীণভাবে বিয়োগ করে দুটি অপারেন্ডের তুলনা করে এবং অপারেন্ডগুলো পরিবর্তন না করেই ফ্ল্যাগ আপডেট করে?",
             options: ["SUB", "AND", "CMP", "TEST"],
             correctIndex: 2
           }
@@ -461,98 +461,98 @@ end_if:
       },
       {
         id: 'strings-stacks',
-        title: 'String & Stack Operations',
+        title: 'স্ট্রিং এবং স্ট্যাক অপারেশন',
         content: `
-# Strings and Stacks
+# স্ট্রিং এবং স্ট্যাক
 
-## String Instructions
-In 8086, a "string" is a contiguous block of memory (bytes or words). The 8086 has dedicated, highly efficient instructions for manipulating these blocks.
-* **Registers used**: 
-  * \`SI\` (Source Index) points to the source string in the Data Segment (DS).
-  * \`DI\` (Destination Index) points to the destination string in the Extra Segment (ES).
-* **Instructions**:
-  * \`MOVSB\` / \`MOVSW\`: Move String Byte / Word. Copies data from [SI] to [DI], then auto-increments/decrements SI and DI.
-  * \`CMPSB\` / \`CMPSW\`: Compare String Byte / Word.
-  * \`SCASB\` / \`SCASW\`: Scan String (searches for a value in AL/AX).
-* **The REP Prefix**: 
-  You can prefix string instructions with \`REP\`. It will repeat the instruction, decrementing the \`CX\` register each time, until \`CX\` is 0. This creates a hardware-level loop!
+## স্ট্রিং ইনস্ট্রাকশন
+৮০৮৬-এ, একটি "স্ট্রিং" হলো মেমরির একটি সংলগ্ন ব্লক (বাইট বা ওয়ার্ড)। এই ব্লকগুলো ম্যানিপুলেট করার জন্য ৮০৮৬-এর ডেডিকেটেড, অত্যন্ত দক্ষ ইনস্ট্রাকশন রয়েছে।
+* **ব্যবহৃত রেজিস্টার**: 
+  * \`SI\` (Source Index) ডেটা সেগমেন্টে (DS) সোর্স স্ট্রিংকে নির্দেশ করে।
+  * \`DI\` (Destination Index) এক্সট্রা সেগমেন্টে (ES) ডেস্টিনেশন স্ট্রিংকে নির্দেশ করে।
+* **ইনস্ট্রাকশন**:
+  * \`MOVSB\` / \`MOVSW\`: মুভ স্ট্রিং বাইট / ওয়ার্ড। [SI] থেকে [DI]-তে ডেটা কপি করে, তারপর স্বয়ংক্রিয়ভাবে SI এবং DI বৃদ্ধি/হ্রাস করে।
+  * \`CMPSB\` / \`CMPSW\`: কম্পেয়ার স্ট্রিং বাইট / ওয়ার্ড।
+  * \`SCASB\` / \`SCASW\`: স্ক্যান স্ট্রিং (AL/AX-এ একটি মান খোঁজে)।
+* **REP প্রিফিক্স**: 
+  আপনি \`REP\` দিয়ে স্ট্রিং ইনস্ট্রাকশন প্রিফিক্স করতে পারেন। এটি ইনস্ট্রাকশনটির পুনরাবৃত্তি করবে, প্রতিবার \`CX\` রেজিস্টার হ্রাস করবে, যতক্ষণ না \`CX\` ০ হয়। এটি একটি হার্ডওয়্যার-লেভেল লুপ তৈরি করে!
 
 \`\`\`assembly
-  ; Copy 100 bytes from SI to DI
+  ; SI থেকে DI-তে ১০০ বাইট কপি করুন
   MOV CX, 100
   REP MOVSB
 \`\`\`
 
-## Stacks Operation
-The stack is a **Last-In-First-Out (LIFO)** memory structure. It grows downwards in memory.
-* **Registers used**: \`SS\` (Stack Segment) and \`SP\` (Stack Pointer). \`SP\` always points to the top of the stack.
+## স্ট্যাক অপারেশন
+স্ট্যাক হলো একটি **লাস্ট-ইন-ফার্স্ট-আউট (LIFO)** মেমরি স্ট্রাকচার। এটি মেমরিতে নিচের দিকে বৃদ্ধি পায়।
+* **ব্যবহৃত রেজিস্টার**: \`SS\` (Stack Segment) এবং \`SP\` (Stack Pointer)। \`SP\` সর্বদা স্ট্যাকের শীর্ষকে নির্দেশ করে।
 
-### PUSH and POP
+### PUSH এবং POP
 * \`PUSH src\`: 
-  1. Decrements SP by 2.
-  2. Stores the 16-bit source operand at the new SP address.
+  ১. SP কে ২ কমায়।
+  ২. নতুন SP অ্যাড্রেসে ১৬-বিট সোর্স অপারেন্ড সংরক্ষণ করে।
 * \`POP dest\`:
-  1. Copies the 16-bit value at SP into the destination.
-  2. Increments SP by 2.
+  ১. SP-তে থাকা ১৬-বিট মানটি ডেস্টিনেশনে কপি করে।
+  ২. SP কে ২ বাড়ায়।
 
-**Why use the stack?**
-1. Temporarily saving register values so they aren't overwritten.
-2. Passing parameters to procedures.
-3. Automatically storing the return address when calling a procedure.
+**কেন স্ট্যাক ব্যবহার করবেন?**
+১. রেজিস্টারের মানগুলো অস্থায়ীভাবে সংরক্ষণ করা যাতে সেগুলো ওভাররাইট না হয়।
+২. প্রসিডিউরে প্যারামিটার পাস করা।
+৩. একটি প্রসিডিউর কল করার সময় স্বয়ংক্রিয়ভাবে রিটার্ন অ্যাড্রেস সংরক্ষণ করা।
         `,
         quiz: [
           {
-            question: "When using the PUSH instruction on the 8086, what happens to the Stack Pointer (SP)?",
-            options: ["It increments by 1", "It increments by 2", "It decrements by 1", "It decrements by 2"],
+            question: "৮০৮৬-এ PUSH ইনস্ট্রাকশন ব্যবহার করার সময়, স্ট্যাক পয়েন্টারের (SP) কী হয়?",
+            options: ["এটি ১ বৃদ্ধি পায়", "এটি ২ বৃদ্ধি পায়", "এটি ১ হ্রাস পায়", "এটি ২ হ্রাস পায়"],
             correctIndex: 3
           }
         ]
       },
       {
         id: 'procedures-macros',
-        title: 'Procedures & Macros',
+        title: 'প্রসিডিউর এবং ম্যাক্রো',
         content: `
-# Procedures, Recursion, and Macros
+# প্রসিডিউর, রিকার্সন এবং ম্যাক্রো
 
-## Procedures (Subroutines)
-A procedure is a reusable block of code, similar to a function in high-level languages.
-* **CALL**: The \`CALL label\` instruction pushes the address of the *next* instruction (the return address) onto the stack, then jumps to the label.
-* **RET**: The \`RET\` instruction pops the return address from the stack into the Instruction Pointer (IP), returning execution to right after the \`CALL\`.
+## প্রসিডিউর (সাবরুটিন)
+একটি প্রসিডিউর হলো কোডের একটি পুনঃব্যবহারযোগ্য ব্লক, যা হাই-লেভেল ল্যাঙ্গুয়েজের ফাংশনের মতো।
+* **CALL**: \`CALL label\` ইনস্ট্রাকশনটি *পরবর্তী* ইনস্ট্রাকশনের অ্যাড্রেস (রিটার্ন অ্যাড্রেস) স্ট্যাকে পুশ করে, তারপর লেবেলে জাম্প করে।
+* **RET**: \`RET\` ইনস্ট্রাকশনটি স্ট্যাক থেকে রিটার্ন অ্যাড্রেসটি ইনস্ট্রাকশন পয়েন্টারে (IP) পপ করে, \`CALL\`-এর ঠিক পরেই এক্সিকিউশন ফিরিয়ে দেয়।
 
 \`\`\`assembly
   CALL my_procedure
-  ; Execution resumes here after RET
+  ; RET এর পরে এক্সিকিউশন এখানে পুনরায় শুরু হয়
   ...
 
 my_procedure PROC
-  ; Do some work
+  ; কিছু কাজ করুন
   RET
 my_procedure ENDP
 \`\`\`
 
-## Reentrant and Recursive Procedures
-* **Reentrant Procedure**: A procedure that can be safely interrupted in the middle of its execution, called again by the interrupting program, and still finish correctly when resumed. 
-  * *Rule*: It must not use global memory variables. It must use registers or the stack for all its local data.
-* **Recursive Procedure**: A procedure that calls itself.
-  * It relies heavily on the stack. Each time it calls itself, it pushes a new set of parameters and a new return address onto the stack, preventing the different instances from interfering with each other.
+## রিএন্ট্রান্ট এবং রিকার্সিভ প্রসিডিউর
+* **রিএন্ট্রান্ট প্রসিডিউর**: এমন একটি প্রসিডিউর যা নিরাপদে তার এক্সিকিউশনের মাঝখানে ইন্টারাপ্ট করা যায়, ইন্টারাপ্টিং প্রোগ্রাম দ্বারা আবার কল করা যায় এবং পুনরায় শুরু হলে সঠিকভাবে শেষ হতে পারে। 
+  * *নিয়ম*: এটি গ্লোবাল মেমরি ভেরিয়েবল ব্যবহার করতে পারবে না। এটিকে তার সমস্ত লোকাল ডেটার জন্য রেজিস্টার বা স্ট্যাক ব্যবহার করতে হবে।
+* **রিকার্সিভ প্রসিডিউর**: এমন একটি প্রসিডিউর যা নিজেকে কল করে।
+  * এটি স্ট্যাকের উপর ব্যাপকভাবে নির্ভর করে। প্রতিবার এটি নিজেকে কল করার সময়, এটি স্ট্যাকে প্যারামিটারের একটি নতুন সেট এবং একটি নতুন রিটার্ন অ্যাড্রেস পুশ করে, যা বিভিন্ন ইনস্ট্যান্সকে একে অপরের সাথে হস্তক্ষেপ করতে বাধা দেয়।
 
-## Macros
-A macro is a named block of code. However, it works very differently from a procedure.
-* When you use a macro, the assembler takes the macro's code and **pastes it directly into your program** at compile time (Inline expansion).
-* **Pros**: Faster execution (no \`CALL\` or \`RET\` overhead). Can take parameters easily.
-* **Cons**: Increases the size of the final executable file if used many times, because the code is duplicated.
+## ম্যাক্রো
+ম্যাক্রো হলো কোডের একটি নামযুক্ত ব্লক। তবে, এটি একটি প্রসিডিউরের চেয়ে খুব ভিন্নভাবে কাজ করে।
+* যখন আপনি একটি ম্যাক্রো ব্যবহার করেন, তখন অ্যাসেম্বলার ম্যাক্রোর কোডটি নেয় এবং কম্পাইল করার সময় **সরাসরি আপনার প্রোগ্রামে পেস্ট করে** (ইনলাইন এক্সপ্যানশন)।
+* **সুবিধা**: দ্রুত এক্সিকিউশন (কোনো \`CALL\` বা \`RET\` ওভারহেড নেই)। সহজেই প্যারামিটার নিতে পারে।
+* **অসুবিধা**: অনেকবার ব্যবহার করা হলে চূড়ান্ত এক্সিকিউটেবল ফাইলের আকার বাড়িয়ে দেয়, কারণ কোডটি ডুপ্লিকেট হয়।
 
-### Procedure vs Macro
-| Feature | Procedure | Macro |
+### প্রসিডিউর বনাম ম্যাক্রো
+| বৈশিষ্ট্য | প্রসিডিউর | ম্যাক্রো |
 | :--- | :--- | :--- |
-| **Execution** | Jumped to at runtime | Expanded inline at compile time |
-| **Overhead** | High (CALL/RET stack ops) | Zero |
-| **Code Size** | Small (code exists once) | Large (code duplicated every use) |
+| **এক্সিকিউশন** | রানটাইমে জাম্প করা হয় | কম্পাইল টাইমে ইনলাইনে প্রসারিত হয় |
+| **ওভারহেড** | উচ্চ (CALL/RET স্ট্যাক অপস) | শূন্য |
+| **কোড সাইজ** | ছোট (কোড একবার থাকে) | বড় (প্রতিটি ব্যবহারে কোড ডুপ্লিকেট হয়) |
         `,
         quiz: [
           {
-            question: "Which of the following is expanded inline by the assembler, resulting in duplicated code but faster execution?",
-            options: ["Procedure", "Interrupt", "Macro", "Subroutine"],
+            question: "নিচের কোনটি অ্যাসেম্বলার দ্বারা ইনলাইনে প্রসারিত হয়, যার ফলে কোড ডুপ্লিকেট হয় কিন্তু দ্রুত এক্সিকিউট হয়?",
+            options: ["প্রসিডিউর", "ইন্টারাপ্ট", "ম্যাক্রো", "সাবরুটিন"],
             correctIndex: 2
           }
         ]

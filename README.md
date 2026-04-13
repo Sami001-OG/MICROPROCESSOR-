@@ -1,40 +1,40 @@
-# MicroMaster: 8085 & 8086 Microprocessor Tutor
+# MicroMaster: 8085 এবং 8086 মাইক্রোপ্রসেসর টিউটর
 
-MicroMaster is a comprehensive, interactive web application designed to help students, hobbyists, and engineers master the Intel 8085 and 8086 microprocessor architectures. 
+MicroMaster হলো একটি বিস্তৃত এবং ইন্টারেক্টিভ ওয়েব অ্যাপ্লিকেশন, যা শিক্ষার্থী, শৌখিন প্রযুক্তিপ্রেমী এবং ইঞ্জিনিয়ারদের Intel 8085 এবং 8086 মাইক্রোপ্রসেসর আর্কিটেকচার আয়ত্ত করতে সাহায্য করার জন্য তৈরি করা হয়েছে।
 
-Whether you are learning about basic instruction sets, memory management, or complex assembly language programming, MicroMaster provides the tools and guidance you need.
+আপনি বেসিক ইনস্ট্রাকশন সেট, মেমরি ম্যানেজমেন্ট বা জটিল অ্যাসেম্বলি ল্যাঙ্গুয়েজ প্রোগ্রামিং—যাই শিখতে চান না কেন, MicroMaster আপনাকে প্রয়োজনীয় টুলস এবং সঠিক নির্দেশনা প্রদান করবে।
 
-## 🚀 Features
+## 🚀 বৈশিষ্ট্যসমূহ (Features)
 
-- **AI Micro Tutor:** An intelligent, context-aware AI assistant powered by NVIDIA's Nemotron-3 120B reasoning model (via OpenRouter). It can explain complex architectural concepts, debug assembly code, and answer specific questions about 8085/8086 microprocessors.
-- **Deep Reasoning:** The AI Tutor utilizes advanced reasoning capabilities to think step-by-step through complex microprocessor problems before answering.
-- **Modern UI/UX:** A clean, responsive interface built with React and Tailwind CSS, featuring full Dark Mode support.
-- **Interactive Learning:** Ask questions and get immediate, educational, and professional responses tailored to microprocessor studies.
+- **এআই মাইক্রো টিউটর (AI Micro Tutor):** এটি একটি বুদ্ধিমান এবং প্রাসঙ্গিক এআই অ্যাসিস্ট্যান্ট, যা NVIDIA-এর Nemotron-3 120B রিজনিং মডেল (OpenRouter এর মাধ্যমে) দ্বারা চালিত। এটি জটিল আর্কিটেকচারাল ধারণা ব্যাখ্যা করতে, অ্যাসেম্বলি কোড ডিবাগ করতে এবং 8085/8086 মাইক্রোপ্রসেসর সম্পর্কিত নির্দিষ্ট প্রশ্নের উত্তর দিতে পারে।
+- **ডিপ রিজনিং (Deep Reasoning):** উত্তর দেওয়ার আগে জটিল মাইক্রোপ্রসেসর সমস্যাগুলো ধাপে ধাপে চিন্তা করার জন্য এই এআই টিউটর উন্নত রিজনিং বা যুক্তিবাদী ক্ষমতা ব্যবহার করে।
+- **আধুনিক UI/UX:** React এবং Tailwind CSS দিয়ে তৈরি একটি পরিচ্ছন্ন ও রেসপন্সিভ ইন্টারফেস, যাতে সম্পূর্ণ ডার্ক মোড (Dark Mode) সাপোর্ট রয়েছে।
+- **ইন্টারেক্টিভ লার্নিং:** প্রশ্ন করুন এবং মাইক্রোপ্রসেসর অধ্যয়নের উপযোগী তাৎক্ষণিক, শিক্ষামূলক এবং পেশাদার উত্তর পান।
 
-## 🛠️ Tech Stack
+## 🛠️ টেক স্ট্যাক (প্রযুক্তিসমূহ)
 
-- **Frontend:** React 19, Tailwind CSS v4, Framer Motion, Lucide Icons
-- **Backend:** Express.js (adapted for Vercel Serverless Functions)
-- **AI Integration:** OpenRouter API (`nvidia/nemotron-3-super-120b-a12b:free`)
-- **Deployment:** Vercel
+- **ফ্রন্টএন্ড:** React 19, Tailwind CSS v4, Framer Motion, Lucide Icons
+- **ব্যাকএন্ড:** Express.js (Vercel Serverless Functions-এর জন্য মানানসই)
+- **এআই ইন্টিগ্রেশন:** OpenRouter API (`nvidia/nemotron-3-super-120b-a12b:free`)
+- **ডিপ্লয়মেন্ট:** Vercel
 
-## ⚙️ Local Development
+## ⚙️ লোকাল ডেভেলপমেন্ট (Local Development)
 
-1. Clone the repository.
-2. Install dependencies:
+১. রিপোজিটরিটি ক্লোন করুন।
+২. ডিপেন্ডেন্সিগুলো ইনস্টল করুন:
    ```bash
    npm install
    ```
-3. Create a `.env` file based on `.env.example` and add your OpenRouter API key:
+৩. `.env.example` ফাইলের ওপর ভিত্তি করে একটি `.env` ফাইল তৈরি করুন এবং আপনার OpenRouter API কী (key) যোগ করুন:
    ```env
    OPENROUTER_API_KEY=your_api_key_here
    ```
-4. Start the development server:
+৪. ডেভেলপমেন্ট সার্ভার চালু করুন:
    ```bash
    npm run dev
    ```
 
-## 🌐 Live Application
+## 🌐 লাইভ অ্যাপ্লিকেশন (Live Application)
 
-Check out the live deployed application here:
+লাইভ ডিপ্লয় করা অ্যাপ্লিকেশনটি এখানে দেখুন:
 **[https://microprocessor-eight.vercel.app](https://microprocessor-eight.vercel.app)**

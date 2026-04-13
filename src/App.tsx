@@ -113,7 +113,7 @@ export default function App() {
               <Menu size={20} />
             </button>
             <h2 className="font-bold text-slate-800 dark:text-slate-100 truncate text-base md:text-lg">
-              {view === 'dashboard' ? 'Learning Dashboard' : activeLesson?.title || 'Microprocessor Lab'}
+              {view === 'dashboard' ? 'লার্নিং ড্যাশবোর্ড' : activeLesson?.title || 'মাইক্রোপ্রসেসর ল্যাব'}
             </h2>
             {view !== 'dashboard' && (
               <div className="hidden sm:flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg ml-3 shrink-0">
@@ -124,7 +124,7 @@ export default function App() {
                     view === 'curriculum' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                   )}
                 >
-                  Theory
+                  থিওরি
                 </button>
                 <button 
                   onClick={() => setView('emulator')}
@@ -133,7 +133,7 @@ export default function App() {
                     view === 'emulator' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                   )}
                 >
-                  Lab
+                  ল্যাব
                 </button>
               </div>
             )}
@@ -181,7 +181,7 @@ export default function App() {
                   view === 'curriculum' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                 )}
               >
-                Theory
+                থিওরি
               </button>
               <button 
                 onClick={() => setView('emulator')}
@@ -190,7 +190,7 @@ export default function App() {
                   view === 'emulator' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                 )}
               >
-                Lab
+                ল্যাব
               </button>
             </div>
           </div>
@@ -209,13 +209,13 @@ export default function App() {
               >
                 <div className="mb-8 md:mb-12">
                   <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
-                    <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-xs font-bold px-2.5 py-0.5 rounded">Course Code: 520223</span>
-                    <span className="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-xs font-bold px-2.5 py-0.5 rounded">Credits: 3</span>
-                    <span className="bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold px-2.5 py-0.5 rounded">Class Hours: 45</span>
-                    <span className="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 text-xs font-bold px-2.5 py-0.5 rounded">Marks: 80</span>
+                    <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-xs font-bold px-2.5 py-0.5 rounded">কোর্স কোড: ৫২০২২৩</span>
+                    <span className="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-xs font-bold px-2.5 py-0.5 rounded">ক্রেডিট: ৩</span>
+                    <span className="bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold px-2.5 py-0.5 rounded">ক্লাস আওয়ার: ৪৫</span>
+                    <span className="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 text-xs font-bold px-2.5 py-0.5 rounded">মার্কস: ৮০</span>
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3 md:mb-4">Microprocessor and Assembly Languages</h1>
-                  <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl">Complete course syllabus implementation including Microprocessors, Advanced Architectures, and Assembly Language Programming.</p>
+                  <h1 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3 md:mb-4">মাইক্রোপ্রসেসর এবং অ্যাসেম্বলি ল্যাঙ্গুয়েজ</h1>
+                  <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl">মাইক্রোপ্রসেসর, অ্যাডভান্সড আর্কিটেকচার এবং অ্যাসেম্বলি ল্যাঙ্গুয়েজ প্রোগ্রামিং সহ সম্পূর্ণ কোর্স সিলেবাস।</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
@@ -227,7 +227,7 @@ export default function App() {
                             <Cpu size={28} className="md:w-8 md:h-8" />
                           </div>
                           <div className="text-right">
-                            <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Module</span>
+                            <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">মডিউল</span>
                             <p className="text-xl md:text-2xl font-black text-slate-900 dark:text-white">{module.id}</p>
                           </div>
                         </div>
@@ -246,7 +246,7 @@ export default function App() {
                           ))}
                           {module.lessons.length > 4 && (
                             <div className="text-sm text-slate-400 dark:text-slate-500 font-medium text-center pt-2">
-                              + {module.lessons.length - 4} more lessons
+                              + আরও {module.lessons.length - 4} টি লেসন
                             </div>
                           )}
                         </div>
@@ -255,7 +255,7 @@ export default function App() {
                           onClick={() => selectLesson(module, module.lessons[0])}
                           className="w-full tech-button tech-button-primary justify-center py-3 mt-auto"
                         >
-                          Continue Learning
+                          পড়া চালিয়ে যান
                           <ArrowRight size={18} />
                         </button>
                       </div>
@@ -267,7 +267,7 @@ export default function App() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-2">
                       <BookOpen className="text-blue-400" size={16} />
-                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-400">Reference Books</span>
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-400">রেফারেন্স বইসমূহ</span>
                     </div>
                     <ul className="text-slate-300 text-sm md:text-base space-y-2 list-disc list-inside">
                       <li>D.V Hall, <i>Microprocessors and Interfacing</i>, McGraw-Hill</li>
